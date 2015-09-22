@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+    <TableRow
+        android:padding="1dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#890000"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:text="Registro de Usuario"
+            android:id="@+id/textView7" />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/textViewNombre" />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-60dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:id="@+id/editTextNombre" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apellidos"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/textViewApellidos" />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-60dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:id="@+id/editTextApellidos" />
+    </TableRow>
+    <TableRow
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Telefono"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/textViewTelefono" />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-60dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:id="@+id/editTextTelefono" />
+    </TableRow>
+    <TableRow
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dirección"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/textViewDireccion" />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-60dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:id="@+id/editTextDireccion"/>
+    </TableRow>
+    <TableRow
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distrito"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/textViewDistrito" />
+
+        <Spinner
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-60dp"
+            android:layout_marginRight="40dp"
+            android:id="@+id/spinnerDistrito"
+            android:clickable="false" />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usuario"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/textViewUsuarioR" />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-60dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:id="@+id/editTextUsuarioR"/>
+    </TableRow>
+
+    <TableRow
+    android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contraseña"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/textViewContrasenaR" />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-60dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editTextContrasenaR" />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Registrar"
+            android:id="@+id/buttonRegistrar" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Cancelar"
+            android:id="@+id/button" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TableRow>
+
+</TableLayout>
