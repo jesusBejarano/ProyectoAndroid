@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent" android:layout_height="fill_parent">
 
@@ -115,6 +119,10 @@
             android:clickable="false" />
     </TableRow>
 
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+
     <TableRow
         android:layout_marginTop="10dp">
         <TextView
@@ -180,3 +188,4 @@
     </TableRow>
 
 </TableLayout>
+</ScrollView>

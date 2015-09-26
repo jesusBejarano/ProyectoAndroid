@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.login_main);
 
         //Inicializamos los tipos de la variables
-        txtUsuario = (EditText) findViewById(R.id.editTextUsuario);
-        txtContrasena = (EditText) findViewById(R.id.editTextContrasena);
-        btnIngresar = (Button)findViewById(R.id.buttonIngresar);
+        txtUsuario = (EditText) findViewById(R.id.txtUsuario);
+        txtContrasena = (EditText) findViewById(R.id.txtContrasena);
+        btnIngresar = (Button)findViewById(R.id.btnIngresar);
 
         //Capturamos evento del Boton
         btnIngresar.setOnClickListener(new View.OnClickListener() {
