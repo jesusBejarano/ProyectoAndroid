@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent" android:layout_height="fill_parent">
 
@@ -38,7 +34,7 @@
             android:layout_marginLeft="-60dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:id="@+id/editTextNombre" />
+            android:id="@+id/txtNombreR" />
 
     </TableRow>
 
@@ -59,7 +55,7 @@
             android:layout_marginLeft="-60dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:id="@+id/editTextApellidos" />
+            android:id="@+id/txtApellidosR" />
     </TableRow>
     <TableRow
         android:layout_marginTop="20dp">
@@ -67,60 +63,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Telefono"
+            android:text="Correo"
             android:textColor="#000"
             android:textSize="15sp"
             android:layout_marginLeft="20dp"
-            android:id="@+id/textViewTelefono" />
+            android:id="@+id/textViewCorreo" />
 
         <EditText
             android:layout_height="wrap_content"
             android:layout_marginLeft="-60dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:id="@+id/editTextTelefono" />
+            android:id="@+id/txtCorreoR" />
     </TableRow>
-    <TableRow
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dirección"
-            android:textColor="#000"
-            android:textSize="15sp"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/textViewDireccion" />
-
-        <EditText
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-60dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:id="@+id/editTextDireccion"/>
-    </TableRow>
-    <TableRow
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Distrito"
-            android:textColor="#000"
-            android:textSize="15sp"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/textViewDistrito" />
-
-        <Spinner
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-60dp"
-            android:layout_marginRight="40dp"
-            android:id="@+id/spinnerDistrito"
-            android:clickable="false" />
-    </TableRow>
-
     <View
         android:layout_height="2dip"
+        android:layout_marginTop="20dp"
         android:background="#FF909090" />
 
     <TableRow
@@ -139,7 +97,7 @@
             android:layout_marginLeft="-60dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:id="@+id/editTextUsuarioR"/>
+            android:id="@+id/txtUsuarioR"/>
     </TableRow>
 
     <TableRow
@@ -160,25 +118,26 @@
             android:layout_weight="1"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editTextContrasenaR" />
+            android:id="@+id/txtContrasenaR" />
     </TableRow>
 
     <TableRow
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="20dp">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Registrar"
-            android:id="@+id/buttonRegistrar" />
+            android:id="@+id/btnRegistrarR" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="-60dp"
             android:text="Cancelar"
-            android:id="@+id/button" />
+            android:id="@+id/btnCancelarR" />
     </TableRow>
 
     <TableRow
@@ -188,4 +147,3 @@
     </TableRow>
 
 </TableLayout>
-</ScrollView>

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText txtUsuario;
     private EditText txtContrasena;
     private Button btnIngresar;
+    private TextView viewRegistrate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         txtUsuario = (EditText) findViewById(R.id.txtUsuario);
         txtContrasena = (EditText) findViewById(R.id.txtContrasena);
         btnIngresar = (Button)findViewById(R.id.btnIngresar);
+        viewRegistrate = (TextView) findViewById(R.id.texto_registrate);
 
         //Capturamos evento del Boton
         btnIngresar.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +37,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("Varoles Capturados ",txtUsuario.getText().toString() + " - " +txtContrasena.getText().toString());
                 mostrarActivity(MenuActivity.class);
+            }
+        });
 
+        viewRegistrate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarActivity(UsuarioActivity.class);
             }
         });
 

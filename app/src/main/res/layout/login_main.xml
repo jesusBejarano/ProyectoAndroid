@@ -41,4 +41,15 @@
         android:layout_weight="1"
         android:layout_marginTop="40dp"
         android:text="Ingresar" />
+
+    <TextView
+        android:id="@+id/texto_registrate"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="Regístrate"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#0E8AEE" />
 </LinearLayout>
