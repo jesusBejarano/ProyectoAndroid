@@ -15,8 +15,8 @@ public class Cliente implements Serializable{
     private String telefono;
     private String usuario;
 
-   /* private Distrito Distrito;
-    private List<Pedido> listPedidos;*/
+    private Distrito Distrito;
+    /*private List<Pedido> listPedidos;*/
 
     public Cliente() {
     }
@@ -77,7 +77,7 @@ public class Cliente implements Serializable{
         this.usuario = usuario;
     }
 
-   /* public Distrito getDistrito() {
+    public Distrito getDistrito() {
         return this.Distrito;
     }
 
@@ -85,7 +85,7 @@ public class Cliente implements Serializable{
         this.Distrito = Distrito;
     }
 
-    public List<Pedido> getListPedidos() {
+ /*   public List<Pedido> getListPedidos() {
         return listPedidos;
     }
 
