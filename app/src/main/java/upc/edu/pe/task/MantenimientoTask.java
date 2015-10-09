@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import upc.edu.pe.proyecto.MainActivity;
+import upc.edu.pe.proyecto.MenuActivity;
 import upc.edu.pe.proyecto.R;
 import upc.edu.pe.utils.HttpClientUtil;
 
@@ -21,6 +22,13 @@ public class MantenimientoTask  extends AsyncTask<String,Void,String> {
 
     public MantenimientoTask(Context context) {
         this.context = context;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressDialog = ProgressDialog.show(
+                context, "Por favor espere", "Procesando...");
     }
 
     @Override
@@ -57,7 +65,7 @@ public class MantenimientoTask  extends AsyncTask<String,Void,String> {
             dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Intent i = new Intent(context, MainActivity.class);
+                    Intent i = new Intent(context, MenuActivity.class);
                     context.startActivity(i);
                 }
             });}

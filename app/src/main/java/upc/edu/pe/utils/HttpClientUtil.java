@@ -21,7 +21,7 @@ public class HttpClientUtil {
         BufferedReader reader = null;
 
         try {
-            URL url = new URL(String.format("http://%s/LicoreriaRest/%s", "192.168.1.39:8080", urlRest));
+            URL url = new URL(String.format("http://%s/LicoreriaRest/%s", "192.168.0.13:8080", urlRest));
             conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setDoInput(true);
@@ -79,7 +79,7 @@ public class HttpClientUtil {
         BufferedReader reader = null;
 
         try {
-            URL url = new URL(String.format("http://%s/LicoreriaRest/%s", "192.168.1.39:8080", urlRest));
+            URL url = new URL(String.format("http://%s/LicoreriaRest/%s", "192.168.0.13:8080", urlRest));
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 //            conn.setRequestProperty("Content-Type", "application/json");
@@ -134,7 +134,7 @@ public class HttpClientUtil {
         BufferedReader reader = null;
 
         try {
-            URL url = new URL(String.format("http://%s/LicoreriaRest/%s", "192.168.1.34:8080", urlRest));
+            URL url = new URL(String.format("http://%s/LicoreriaRest/%s", "192.168.0.13:8080", urlRest));
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Content-Type", "text/plain");
@@ -191,7 +191,7 @@ public class HttpClientUtil {
         BufferedReader reader = null;
 
         try {
-            URL url = new URL(String.format("http://%s/LicoreriaRest/%s", "192.168.1.33:8080", urlRest));
+            URL url = new URL(String.format("http://%s/LicoreriaRest/%s", "192.168.0.13:8080", urlRest));
             conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setDoInput(true);
