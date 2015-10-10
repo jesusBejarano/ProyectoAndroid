@@ -1,61 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" android:layout_height="fill_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="48dp">
 
-    <TableRow
-        android:padding="2dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center">
+    <TextView
+        android:id="@+id/texto_Menu"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:text="Menu"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_span="4"
-            android:textColor="#890000"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="Menu"
-            android:id="@+id/textView6" />
-    </TableRow>
-
-    <TableRow
+    <Button
+        android:id="@+id/btnMantenimiento"
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:gravity="center">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mantenimiento"
-            android:id="@+id/buttonMantenimiento" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
         android:layout_marginTop="20dp"
-        android:gravity="center">
+        android:text="Mantenimiento" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PRODUCTOS"
-            android:id="@+id/buttonProductos" />
-    </TableRow>
-
-    <TableRow
+    <Button
+        android:id="@+id/btnConsultar"
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:layout_marginTop="40dp"
+        android:text="Historial" />
+
+    <TextView
+        android:id="@+id/btnExit"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:gravity="center">
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="Salir"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ee3a21" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CONSULTAS"
-            android:id="@+id/buttonConsultas" />
-    </TableRow>
 
-</TableLayout>
+
+</LinearLayout>

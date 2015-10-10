@@ -2,7 +2,10 @@ package upc.edu.pe.proyecto;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,12 +15,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 import upc.edu.pe.task.DistritoTask;
 import upc.edu.pe.task.MantenimientoTask;
 import upc.edu.pe.task.UsuarioTask;
 import upc.edu.pe.type.Cliente;
 import upc.edu.pe.type.Distrito;
+import upc.edu.pe.utils.HttpClientUtil;
 
 /**
  * Created by Miguel Cardoso on 19/09/2015.
@@ -39,10 +47,21 @@ public class MantenimientoActivity extends Activity  {
     public Cliente cliente;
     //JSON
     private Gson gson;
+    //Otros
+    public String clienteId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mantenimiento_main);
+        final SharedPreferences prefs =  getSharedPreferences("MyCliente", Context.MODE_PRIVATE);
+        cliente = new Cliente();
+        cliente.setDistrito(new Distrito());
+        gson = new Gson();
+
+        //Obetener Intent
+        Intent intent = getIntent();
+        //Extrayendo el extra de tipo cadena
+        clienteId = prefs.getString("idCliente", "0");
 
         //Inicializamos los tipos de la variables
         spinnerDistrito = (Spinner)findViewById(R.id.spinnerDistrito);
@@ -55,21 +74,15 @@ public class MantenimientoActivity extends Activity  {
         txtDireccion =   (EditText) findViewById(R.id.txtDireccionM);
         btnActualizar = (Button)findViewById(R.id.btnActualizarM);
         btnCancelar = (Button)findViewById(R.id.btnCancelarM);
-        cliente = new Cliente();
-        cliente.setDistrito(new Distrito());
-        gson = new Gson();
 
         new DistritoTask(MantenimientoActivity.this,spinnerDistrito).execute("");
+        new ClienteJSON().execute("");
 
         //Capturamos evento del Boton
         btnActualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(camposVacios()){
-                    Log.d("Spinner Firt : ", spinnerDistrito.getFirstVisiblePosition() +"");
-                    Log.d("Spinner Id : ", spinnerDistrito.getId() +"");
-
-                    cliente.setId_cliente(10);
                     cliente.setNombre(txtNombre.getText().toString().trim());
                     cliente.setApellidos(txtApellido.getText().toString().trim());
                     cliente.setCorreo(txtCorreo.getText().toString().trim());
@@ -77,10 +90,8 @@ public class MantenimientoActivity extends Activity  {
                     cliente.setContrasena(txtContrasena.getText().toString().trim());
                     cliente.setTelefono(txtTelefono.getText().toString().trim());
                     cliente.setDireccion(txtDireccion.getText().toString().trim());
-                    cliente.getDistrito().setId_distrito(spinnerDistrito.getFirstVisiblePosition());
+                    cliente.getDistrito().setId_distrito(spinnerDistrito.getSelectedItemPosition());
                     String json = gson.toJson(cliente);
-                    Log.d("Json Cliente : ", json);
-
                     new MantenimientoTask(MantenimientoActivity.this).execute(json);
                 }else{
                     mensaje();
@@ -96,6 +107,17 @@ public class MantenimientoActivity extends Activity  {
         });
 
 
+    }
+
+    private void cargarInformacion() {
+        txtUsuario.setText(cliente.getUsuario());
+        txtDireccion.setText(cliente.getDireccion());
+        txtTelefono.setText(cliente.getTelefono());
+        txtApellido.setText(cliente.getApellidos());
+        txtNombre.setText(cliente.getNombre());
+        txtContrasena.setText(cliente.getContrasena());
+        txtCorreo.setText(cliente.getCorreo());
+        spinnerDistrito.setSelection(cliente.getDistrito().getId_distrito());
     }
 
     private void mostrarActivity(Class view){
@@ -139,4 +161,30 @@ public class MantenimientoActivity extends Activity  {
         dialog.setMessage("Debe ingresar todo los campos.");
         dialog.show();
     }
+
+    class ClienteJSON extends AsyncTask<String,Void,String> {
+        @Override
+        protected String doInBackground(String... params){
+        HttpClientUtil RestClient = new HttpClientUtil();
+            try {
+                String result = RestClient.GET("usuarios/info/"+clienteId);
+                if(result != null || !result.isEmpty()){
+                    cliente = gson.fromJson(result,Cliente.class);
+                    if(cliente.getDistrito() == null){
+                        cliente.setDistrito(new Distrito());
+                        cliente.getDistrito().setId_distrito(1);
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("Error en Task JSON:", e.getMessage());
+            }
+            return "";
+        }
+        @Override
+        protected void onPostExecute(String result) {
+        cargarInformacion();
+    }
+}
 }

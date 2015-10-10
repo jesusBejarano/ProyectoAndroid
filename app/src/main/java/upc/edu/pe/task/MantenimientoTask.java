@@ -61,7 +61,7 @@ public class MantenimientoTask  extends AsyncTask<String,Void,String> {
         AlertDialog.Builder dialog = new AlertDialog.Builder(context);
         dialog.setTitle(R.string.dialog_header);
         dialog.setMessage(result);
-        if(result.equalsIgnoreCase("Informacion Actualizada")) {
+        if(result.equalsIgnoreCase("Información Actualizada")) {
             dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
