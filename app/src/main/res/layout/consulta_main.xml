@@ -2,4 +2,27 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Historial"
+        android:textStyle="bold"
+        android:background="#ff0093ff"
+        android:gravity="center" />
+
+    <ListView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:id="@+id/lista"/>
+
+    <Button
+        android:id="@+id/btnRegresar"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:text="Regresar" />
+
 </TableLayout>

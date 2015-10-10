@@ -57,9 +57,14 @@ public class MenuActivity extends Activity {
         btnMantenimiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MenuActivity.this, MantenimientoActivity.class);
-                startActivity(i);
                 mostrarActivity(MantenimientoActivity.class);
+            }
+        });
+
+        btnConsultas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarActivity(HistorialActivity.class);
             }
         });
 

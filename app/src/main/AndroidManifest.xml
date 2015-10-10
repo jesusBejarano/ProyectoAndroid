@@ -27,6 +27,9 @@
         <activity android:name=".UsuarioActivity">
 
         </activity>
+        <activity android:name=".HistorialActivity">
+
+        </activity>
     </application>
 
 </manifest>
