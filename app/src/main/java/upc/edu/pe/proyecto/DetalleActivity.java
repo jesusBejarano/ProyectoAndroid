@@ -6,42 +6,37 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import upc.edu.pe.task.DistritoTask;
+import upc.edu.pe.task.DetalleTask;
 import upc.edu.pe.task.HistorialTask;
-import upc.edu.pe.type.Pedido;
 
 /**
- * Created by Miguel Cardoso on 09/10/2015.
+ * Created by Miguel Cardoso on 10/10/2015.
  */
-public class HistorialActivity extends Activity {
-
+public class DetalleActivity extends Activity {
     //Variables
     private ListView listView;
     private ArrayAdapter arrayAdapter;
     private Button btnRegresar;
     //Otros
-    public String clienteId;
+    public String pedidoId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.consulta_main);
-        SharedPreferences prefs =  getSharedPreferences("MyCliente", Context.MODE_PRIVATE);
+        setContentView(R.layout.detalle_pedido_main);
         //Obetener Intent
         Intent intent = getIntent();
         //Extrayendo el extra de tipo cadena
-        clienteId = prefs.getString("idCliente", "0");
+        pedidoId = intent.getStringExtra("pedidoId");
         //Inicializamos los tipos de la variables
-        btnRegresar = (Button) findViewById(R.id.btnRegresar);
-        listView = (ListView) findViewById(R.id.lista);
+        btnRegresar = (Button) findViewById(R.id.btnRegresarDetalle);
+        listView = (ListView) findViewById(R.id.listaDetallePedido);
 
-        new HistorialTask(HistorialActivity.this,listView,arrayAdapter).execute(clienteId);
+        new DetalleTask(DetalleActivity.this,listView,arrayAdapter).execute(pedidoId);
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,5 +51,4 @@ public class HistorialActivity extends Activity {
         Intent i = new Intent(this, view);
         startActivity(i);
     }
-
 }

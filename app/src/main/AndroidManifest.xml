@@ -30,6 +30,9 @@
         <activity android:name=".HistorialActivity">
 
         </activity>
+        <activity android:name=".DetalleActivity">
+
+        </activity>
     </application>
 
 </manifest>
