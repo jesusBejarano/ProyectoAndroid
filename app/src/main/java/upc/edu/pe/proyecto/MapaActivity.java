@@ -42,7 +42,7 @@ public class MapaActivity extends FragmentActivity implements LocationListener, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mapa);
+        setContentView(R.layout.mapa_main);
 
         txtDireccionMapa = (EditText) findViewById(R.id.txtDireccionMapa);
 

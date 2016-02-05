@@ -27,15 +27,13 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAJUVGad0o361bvmMDPm2vOKM0rq9p6D-k" />
 
         <activity android:name=".MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".MenuActivity" >
         </activity>
@@ -47,14 +45,19 @@
         </activity>
         <activity android:name=".DetalleActivity" >
         </activity>
-        <activity
-            android:name=".MapaActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".MapaActivity" >
         </activity>
+        <activity android:name=".CatalogoActivity" >
+        </activity>
+
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyAJUVGad0o361bvmMDPm2vOKM0rq9p6D-k" />
+
     </application>
 
 </manifest>

@@ -23,6 +23,7 @@ public class MenuActivity extends Activity {
     private Button btnMantenimiento;
     private TextView btnSalir;
     private Button btnConsultas;
+    private Button btnCatalogo;
 
     //Otros
     private Cliente cliente = new Cliente();
@@ -52,7 +53,7 @@ public class MenuActivity extends Activity {
         btnMantenimiento = (Button)findViewById(R.id.btnMantenimiento);
         btnSalir = (TextView)findViewById(R.id.btnExit);
         btnConsultas = (Button)findViewById(R.id.btnConsultar);
-
+        btnCatalogo = (Button)findViewById(R.id.btnCatalogo);
         //Capturamos evento del Boton
         btnMantenimiento.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +66,13 @@ public class MenuActivity extends Activity {
             @Override
             public void onClick(View v) {
                 mostrarActivity(HistorialActivity.class);
+            }
+        });
+
+        btnConsultas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarActivity(CatalogoActivity.class);
             }
         });
 

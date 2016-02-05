@@ -1,5 +1,6 @@
 package upc.edu.pe.proyecto;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,7 @@ import com.google.gson.Gson;
 import upc.edu.pe.task.LoginTask;
 import upc.edu.pe.type.Cliente;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     //Variables
     private EditText txtUsuario;
