@@ -73,20 +73,6 @@ public class HistorialTask extends AsyncTask<String,Void,String> {
             arrayAdapter = new HistorialAdapter(context,listPedidos);
             listView.setAdapter(arrayAdapter);
 
-   /*        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    Pedido pedidoSelecionado = (Pedido) arrayAdapter.getItem(position);
-                    String msg = "Elegiste el pedido" + pedidoSelecionado.getId_pedido() + "-" + pedidoSelecionado.getFecha();
-                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });*/
-
             if(listPedidos.isEmpty()){
                 AlertDialog.Builder dialog = new AlertDialog.Builder(context);
                 dialog.setTitle(R.string.dialog_header);

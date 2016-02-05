@@ -46,8 +46,6 @@ public class HttpClientUtil {
                 line = reader.readLine();
             }
 
-//            JSONObject json = new JSONObject(sb.toString());
-//            String result = json.getString("result");
               String result = sb.toString();
 
             if (conn.getResponseCode() == HttpURLConnection.HTTP_CREATED) {
@@ -84,8 +82,6 @@ public class HttpClientUtil {
             URL url = new URL(String.format("http://%s/LicoreriaRest/%s", host, urlRest));
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
-//            conn.setRequestProperty("Content-Type", "application/json");
-//            conn.setRequestProperty("charset", "utf-8");
             conn.setRequestProperty("Content-Type", "text/plain");
             conn.setRequestProperty("Accept", "application/json");
             conn.setConnectTimeout(10000);
@@ -101,66 +97,6 @@ public class HttpClientUtil {
                 sb.append(line);
                 line = reader.readLine();
             }
-
-//            JSONObject json = new JSONObject(sb.toString());
-//            String result = json.getString("result");
-
-            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                return sb.toString();
-            } else {
-                Log.e("HttpClientUtil", String.format("Failed: HTTP error dode : %d %s", conn.getResponseCode(), conn.getResponseMessage()));
-                throw new RuntimeException(sb.toString());
-            }
-        } catch (RuntimeException ex){
-            throw ex;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            throw ex;
-        }
-        finally {
-            if(conn != null){
-                conn.disconnect();
-            }
-            if(os != null){
-                os.close();
-            }
-            if(reader != null){
-                reader.close();
-            }
-        }
-    }
-
-    public static String GET2(String urlRest,String param) throws Exception {
-        HttpURLConnection conn = null;
-        OutputStream os = null;
-        BufferedReader reader = null;
-
-        try {
-            URL url = new URL(String.format("http://%s/LicoreriaRest/%s", host, urlRest));
-            conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Content-Type", "text/plain");
-            conn.setRequestProperty("charset", "utf-8");
-            conn.setConnectTimeout(10000);
-            conn.setReadTimeout(15000);
-
-            os = conn.getOutputStream();
-            os.write(param.getBytes());
-            os.flush();
-
-            Log.d("HttpClientUtil", "Status code: " + conn.getResponseCode());
-
-            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            StringBuilder sb = new StringBuilder();
-
-            String line = reader.readLine();
-            while (line != null) {
-                sb.append(line);
-                line = reader.readLine();
-            }
-
-//            JSONObject json = new JSONObject(sb.toString());
-//            String result = json.getString("result");
 
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 return sb.toString();
@@ -216,8 +152,6 @@ public class HttpClientUtil {
                 line = reader.readLine();
             }
 
-//            JSONObject json = new JSONObject(sb.toString());
-//            String result = json.getString("result");
             String result = sb.toString();
 
             if (conn.getResponseCode() == HttpURLConnection.HTTP_CREATED) {
