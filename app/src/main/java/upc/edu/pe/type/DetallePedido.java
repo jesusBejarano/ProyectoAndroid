@@ -16,9 +16,9 @@ public class DetallePedido  implements Serializable {
 
     private Double total;
 
-    private Producto Producto;
+    private Producto producto;
 
-    private Pedido Pedido;
+    private Pedido pedido;
 
     public DetallePedido() {
     }
@@ -56,18 +56,18 @@ public class DetallePedido  implements Serializable {
     }
 
     public Producto getProducto() {
-        return Producto;
+        return producto;
     }
 
-    public void setProducto(Producto Producto) {
-        this.Producto = Producto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public Pedido getPedido() {
-        return Pedido;
+        return pedido;
     }
 
-    public void setPedido(Pedido Pedido) {
-        this.Pedido = Pedido;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

@@ -15,6 +15,7 @@ public class CatalogoActivity extends Activity {
 
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager lManager;
 
 
     @Override
@@ -24,8 +25,12 @@ public class CatalogoActivity extends Activity {
 
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
+        recycler.setHasFixedSize(true);
+        // Usar un administrador para LinearLayout
+        lManager = new LinearLayoutManager(this);
+        recycler.setLayoutManager(lManager);
 
-        new CatalogoTask(CatalogoActivity.this,recycler,adapter).execute();
+        new CatalogoTask(CatalogoActivity.this,recycler,adapter).execute("");
 
     }
 

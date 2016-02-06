@@ -56,7 +56,7 @@ public class HistorialAdapter extends ArrayAdapter<Pedido> {
             imageURL = R.drawable.pendiente;
         }
 
-        titulo.setText(item.getDireccion() + "-" + item.getDistrito().getNombre());
+        titulo.setText(item.getDireccion() == null ? "No Disponible" : item.getDireccion()  + "-" + item.getDistrito().getNombre());
         subtitulo.setText(item.getFecha());
         categoria.setImageResource(imageURL);
 

@@ -38,13 +38,11 @@ public class CatalogoTask extends AsyncTask<String,Void,String> {
     private Context context;
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager lManager;
+
 
     //Variables
     private Gson json = new Gson();
     private List<Producto> listProductos;
-
-    static String host = "192.168.0.4:8080";
 
 
     public CatalogoTask(Context context,RecyclerView listView, RecyclerView.Adapter arrayAdapter) {
@@ -79,28 +77,9 @@ public class CatalogoTask extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         if(result != null){
-            recycler.setHasFixedSize(true);
-            // Usar un administrador para LinearLayout
-            lManager = new LinearLayoutManager(context);
-            recycler.setLayoutManager(lManager);
             //Creamos el adaptador
             adapter = new CatalogoAdapter(listProductos);
             recycler.setAdapter(adapter);
-
-            if(listProductos.isEmpty()){
-                AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-                dialog.setTitle(R.string.dialog_header);
-                dialog.setMessage("No tiene historial para consultar.");
-                dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent i = new Intent(context, MenuActivity.class);
-                        context.startActivity(i);
-                    }
-                });
-                dialog.show();
-            }
-
         } else {
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
             dialog.setTitle(R.string.dialog_header);

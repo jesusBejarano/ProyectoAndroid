@@ -15,7 +15,7 @@ import java.net.URL;
  */
 public class HttpClientUtil {
 
-    static String host = "192.168.0.4:8080";
+    static String host = "192.168.0.102:8080";
 
     public static String POST(String urlRest, String param) throws Exception {
         HttpURLConnection conn = null;
@@ -23,7 +23,7 @@ public class HttpClientUtil {
         BufferedReader reader = null;
 
         try {
-            URL url = new URL(String.format("http://%s/LicoreriaRest/%s", host, urlRest));
+            URL url = new URL(String.format("http://%s/LicoreriaRest-Pidelo/%s", host, urlRest));
             conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setDoInput(true);
@@ -79,7 +79,7 @@ public class HttpClientUtil {
         BufferedReader reader = null;
 
         try {
-            URL url = new URL(String.format("http://%s/LicoreriaRest/%s", host, urlRest));
+            URL url = new URL(String.format("http://%s/LicoreriaRest-Pidelo/%s", host, urlRest));
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Content-Type", "text/plain");
@@ -129,7 +129,7 @@ public class HttpClientUtil {
         BufferedReader reader = null;
 
         try {
-            URL url = new URL(String.format("http://%s/LicoreriaRest/%s", host, urlRest));
+            URL url = new URL(String.format("http://%s/LicoreriaRest-Pidelo/%s", host, urlRest));
             conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setDoInput(true);

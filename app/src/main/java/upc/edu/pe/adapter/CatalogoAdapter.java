@@ -56,7 +56,7 @@ public class CatalogoAdapter extends RecyclerView.Adapter<CatalogoAdapter.Catalo
         viewHolder.precio.setText("Precio (s/.):"+String.valueOf(items.get(i).getPrecio()));
     }
 
-    private int getImage(String imagen){
+    public int getImage(String imagen){
         int imageURL = R.drawable.pendiente;
         if(imagen.equalsIgnoreCase("corona.png")){
             imageURL = R.drawable.corona;

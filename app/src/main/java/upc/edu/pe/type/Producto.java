@@ -16,7 +16,7 @@ public class Producto implements Serializable {
 
     private List<DetallePedido> listDetallePedidos;
 
-    private Familia Familia;
+    private Familia familia;
 
     public Producto() {
     }
@@ -54,11 +54,11 @@ public class Producto implements Serializable {
     }
 
     public Familia getFamilia() {
-        return Familia;
+        return familia;
     }
 
-    public void setFamilia(Familia Familia) {
-        this.Familia = Familia;
+    public void setFamilia(Familia familia) {
+        this.familia = familia;
     }
 
     public String getDescripcion() {

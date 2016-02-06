@@ -52,7 +52,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/carrito"
-            android:background="@color/material_blue_grey_800" />
+            android:background="@color/wallet_highlighted_text_holo_light" />
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

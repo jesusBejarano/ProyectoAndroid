@@ -12,9 +12,9 @@ public class Pedido {
     private Double monto;
 
    /* private List<DetallePedido> listDetallePedidos;*/
-    private Distrito Distrito;
+    private Distrito distrito;
 
-    private Cliente Cliente;
+    private Cliente cliente;
 
     public Pedido() {
     }
@@ -76,18 +76,18 @@ public class Pedido {
     }*/
 
     public Distrito getDistrito() {
-        return Distrito;
+        return distrito;
     }
 
-    public void setDistrito(Distrito Distrito) {
-        this.Distrito = Distrito;
+    public void setDistrito(Distrito distrito) {
+        this.distrito = distrito;
     }
 
     public Cliente getCliente() {
-        return Cliente;
+        return cliente;
     }
 
-    public void setCliente(Cliente Cliente) {
-        this.Cliente = Cliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

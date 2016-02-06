@@ -69,7 +69,7 @@ public class MenuActivity extends Activity {
             }
         });
 
-        btnConsultas.setOnClickListener(new View.OnClickListener() {
+        btnCatalogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mostrarActivity(CatalogoActivity.class);
