@@ -63,6 +63,7 @@ public class HistorialTask extends AsyncTask<String,Void,String> {
         String mensaje="";
         try {
             String result = RestClient.GET("pedidos/todo/"+params[0]);
+            Thread.sleep(3000);
             if(result != null || !result.isEmpty()){
                 Type type = new TypeToken<List<Pedido>>(){}.getType();
                 listPedidos = json.fromJson(result, type);
@@ -80,8 +81,8 @@ public class HistorialTask extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         if(result != null){
-            progressDialog.dismiss();
             if(listPedidos.isEmpty()){
+                progressDialog.dismiss();
                 AlertDialog.Builder dialog = new AlertDialog.Builder(context);
                 dialog.setTitle(R.string.dialog_header);
                 dialog.setMessage("No tiene historial para consultar.");
@@ -96,8 +97,10 @@ public class HistorialTask extends AsyncTask<String,Void,String> {
             }else{
                 arrayAdapter = new HistorialAdapter(context,listPedidos);
                 listView.setAdapter(arrayAdapter);
+                progressDialog.dismiss();
             }
         } else {
+            progressDialog.dismiss();
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
             dialog.setTitle(R.string.dialog_header);
             dialog.setMessage("Error en cargar Historial de Pedidos.");

@@ -58,9 +58,8 @@ public class HistorialAdapter extends ArrayAdapter<Pedido> {
             public void onClick(View v) {
                 Log.d("Parametro : ",item.getId_pedido()+"");
                 Intent intent = new Intent(getContext(), DetalleActivity.class);
-                intent.putExtra("pedidoId",item.getId_pedido()+"");
+                intent.putExtra("pedidoId",item.getId_pedido());
                 getContext().startActivity(intent);
-                getContext().startActivity(new Intent(getContext(), DetalleActivity.class));
             }
         });
 

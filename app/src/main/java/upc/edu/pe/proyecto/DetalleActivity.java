@@ -26,7 +26,7 @@ public class DetalleActivity extends Activity {
     //private ArrayAdapter arrayAdapter;
     //private Button btnRegresar;
     //Otros
-    public String pedidoId;
+    public Integer pedidoId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class DetalleActivity extends Activity {
         //Obetener Intent
         Intent intent = getIntent();
         //Extrayendo el extra de tipo cadena
-        pedidoId = intent.getStringExtra("pedidoId");
+        pedidoId = intent.getIntExtra("pedidoId",0);
         //Inicializamos los tipos de la variables
      //   btnRegresar = (Button) findViewById(R.id.btnRegresarDetalle);
      //   listView = (ListView) findViewById(R.id.listaDetallePedido);
@@ -43,7 +43,7 @@ public class DetalleActivity extends Activity {
         table = (TableLayout) findViewById(R.id.contenedor);
         textView = (TextView) findViewById(R.id.txtTotal);
 
-        new DetalleTask(DetalleActivity.this,table,textView).execute(pedidoId);
+        new DetalleTask(DetalleActivity.this,table,textView).execute(pedidoId.toString());
 
    /*     btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override

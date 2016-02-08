@@ -66,6 +66,7 @@ public class CatalogoTask extends AsyncTask<String,Void,String> {
         String mensaje="";
         try {
             String result = RestClient.GET("productos");
+            Thread.sleep(2000);
             if(result != null || !result.isEmpty()){
                 Type type = new TypeToken<List<Producto>>(){}.getType();
                 listProductos = json.fromJson(result, type);
@@ -80,13 +81,11 @@ public class CatalogoTask extends AsyncTask<String,Void,String> {
         return mensaje;
     }
 
-
-
     @Override
     protected void onPostExecute(String result) {
         if(result != null){
-            progressDialog.dismiss();
             if(listProductos.isEmpty()){
+                progressDialog.dismiss();
                 AlertDialog.Builder dialog = new AlertDialog.Builder(context);
                 dialog.setTitle(R.string.dialog_header);
                 dialog.setMessage("No productos para mostrar.");
@@ -102,8 +101,10 @@ public class CatalogoTask extends AsyncTask<String,Void,String> {
                 //Creamos el adaptador
                 adapter = new CatalogoAdapter(listProductos);
                 recycler.setAdapter(adapter);
+                progressDialog.dismiss();
             }
         } else {
+            progressDialog.dismiss();
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
             dialog.setTitle(R.string.dialog_header);
             dialog.setMessage("Error en Cargar Catalogo de Productos.");

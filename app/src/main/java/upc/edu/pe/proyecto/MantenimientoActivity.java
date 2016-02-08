@@ -2,6 +2,7 @@ package upc.edu.pe.proyecto;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,6 +34,7 @@ import upc.edu.pe.utils.HttpClientUtil;
 public class MantenimientoActivity extends Activity  {
 
     //Variables
+    private ProgressDialog progressDialogMantenimiento;
     Spinner spinnerDistrito;
     private EditText txtUsuario;
     private EditText txtContrasena;
@@ -164,11 +166,19 @@ public class MantenimientoActivity extends Activity  {
 
     class ClienteJSON extends AsyncTask<String,Void,String> {
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialogMantenimiento = ProgressDialog.show(
+                    MantenimientoActivity.this, "Por favor espere", "Procesando...");
+        }
+
+
+        @Override
         protected String doInBackground(String... params){
         HttpClientUtil RestClient = new HttpClientUtil();
             try {
-                Thread.sleep(4000);
                 String result = RestClient.GET("usuarios/info/"+clienteId);
+                Thread.sleep(3000);
                 if(result != null || !result.isEmpty()){
                     cliente = gson.fromJson(result,Cliente.class);
                     if(cliente.getDistrito() == null){
@@ -185,7 +195,8 @@ public class MantenimientoActivity extends Activity  {
         }
         @Override
         protected void onPostExecute(String result) {
-        cargarInformacion();
+            progressDialogMantenimiento.dismiss();
+            cargarInformacion();
     }
 }
 }

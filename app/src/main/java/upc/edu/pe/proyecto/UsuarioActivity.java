@@ -33,9 +33,6 @@ public class UsuarioActivity extends Activity {
     //JSON
     private Gson gson;
 
-    public UsuarioActivity() {
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

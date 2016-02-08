@@ -19,10 +19,13 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import upc.edu.pe.proyecto.HistorialActivity;
 import upc.edu.pe.proyecto.MenuActivity;
 import upc.edu.pe.proyecto.R;
 import upc.edu.pe.type.DetallePedido;
 import upc.edu.pe.utils.HttpClientUtil;
+
+import static upc.edu.pe.utils.Tools.formatearDecimales;
 
 /**
  * Created by Miguel Cardoso on 10/10/2015.
@@ -60,6 +63,7 @@ public class DetalleTask extends AsyncTask<String,Void,String> {
         String mensaje="";
         try {
             String result = RestClient.GET("pedidos/detalle/"+params[0].trim());
+            Thread.sleep(3000);
             if(result != null || !result.isEmpty()){
                 Type type = new TypeToken<List<DetallePedido>>(){}.getType();
                 listDetallePedidos = json.fromJson(result, type);
@@ -79,15 +83,16 @@ public class DetalleTask extends AsyncTask<String,Void,String> {
         if(result != null){
         /*    arrayAdapter = new DetalleAdapter(context,listDetallePedidos);
             listView.setAdapter(arrayAdapter);*/
-            progressDialog.dismiss();
+
             if(listDetallePedidos.isEmpty()){
+                progressDialog.dismiss();
                 AlertDialog.Builder dialog = new AlertDialog.Builder(context);
                 dialog.setTitle(R.string.dialog_header);
                 dialog.setMessage("No tiene Detalle de pedido para consultar.");
                 dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent i = new Intent(context, MenuActivity.class);
+                        Intent i = new Intent(context, HistorialActivity.class);
                         context.startActivity(i);
                     }
                 });
@@ -111,15 +116,17 @@ public class DetalleTask extends AsyncTask<String,Void,String> {
                     //Seteamos los Valores
                     nombre.setText(deta.getProducto().getNombre());
                     cantidad.setText(deta.getCantidad()+"");
-                    subtotal.setText(deta.getTotal().toString());
+                    subtotal.setText(formatearDecimales(deta.getTotal()));
                     table.addView(row);
                     total += deta.getTotal();
                     x++;
                 }
-                textView.setText(total.toString());
+                textView.setText(formatearDecimales(total));
+                progressDialog.dismiss();
             }
 
         } else {
+            progressDialog.dismiss();
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
             dialog.setTitle(R.string.dialog_header);
             dialog.setMessage("Error en cargar Detalle de Pedido.");
