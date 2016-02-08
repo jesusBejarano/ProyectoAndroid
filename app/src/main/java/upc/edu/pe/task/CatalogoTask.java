@@ -1,6 +1,7 @@
 package upc.edu.pe.task;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -36,6 +37,7 @@ import upc.edu.pe.utils.HttpClientUtil;
 public class CatalogoTask extends AsyncTask<String,Void,String> {
 
     private Context context;
+    private ProgressDialog progressDialog;
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
 
@@ -51,6 +53,12 @@ public class CatalogoTask extends AsyncTask<String,Void,String> {
         this.adapter = arrayAdapter;
     }
 
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressDialog = ProgressDialog.show(
+                context, "Por favor espere", "Cargando...");
+    }
 
     @Override
     protected String doInBackground(String... params) {
@@ -77,13 +85,28 @@ public class CatalogoTask extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         if(result != null){
-            //Creamos el adaptador
-            adapter = new CatalogoAdapter(listProductos);
-            recycler.setAdapter(adapter);
+            progressDialog.dismiss();
+            if(listProductos.isEmpty()){
+                AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+                dialog.setTitle(R.string.dialog_header);
+                dialog.setMessage("No productos para mostrar.");
+                dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(context, MenuActivity.class);
+                        context.startActivity(i);
+                    }
+                });
+                dialog.show();
+            }else{
+                //Creamos el adaptador
+                adapter = new CatalogoAdapter(listProductos);
+                recycler.setAdapter(adapter);
+            }
         } else {
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
             dialog.setTitle(R.string.dialog_header);
-            dialog.setMessage("Error en cargar Catalogo de Productos.");
+            dialog.setMessage("Error en Cargar Catalogo de Productos.");
             dialog.show();
         }
     }

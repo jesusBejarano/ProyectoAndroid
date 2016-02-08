@@ -64,10 +64,10 @@ public class UsuarioTask extends AsyncTask<String,Void,String>
     protected void onPostExecute(String result) {
         progressDialog.dismiss();
 
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle(R.string.dialog_header);
+        dialog.setMessage(result);
 
-            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-            dialog.setTitle(R.string.dialog_header);
-            dialog.setMessage(result);
         if(result.equalsIgnoreCase("Gracias por Registrarse")) {
             dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -76,7 +76,7 @@ public class UsuarioTask extends AsyncTask<String,Void,String>
                     context.startActivity(i);
                 }
             });}
-            dialog.show();
+        dialog.show();
 
     }
 }

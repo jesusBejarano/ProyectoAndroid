@@ -167,6 +167,7 @@ public class MantenimientoActivity extends Activity  {
         protected String doInBackground(String... params){
         HttpClientUtil RestClient = new HttpClientUtil();
             try {
+                Thread.sleep(4000);
                 String result = RestClient.GET("usuarios/info/"+clienteId);
                 if(result != null || !result.isEmpty()){
                     cliente = gson.fromJson(result,Cliente.class);

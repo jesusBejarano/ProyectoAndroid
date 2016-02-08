@@ -36,9 +36,7 @@ public class MantenimientoTask  extends AsyncTask<String,Void,String> {
         HttpClientUtil RestClient = new HttpClientUtil();
         String mensaje="";
         try {
-
             String result = RestClient.PUT("usuarios/actualizar", params[0]);
-
             if(result.equalsIgnoreCase("OK")){
                 mensaje = "Informacion Actualizada";
             }else{

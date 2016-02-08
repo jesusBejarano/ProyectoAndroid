@@ -1,15 +1,19 @@
 package upc.edu.pe.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
+import upc.edu.pe.proyecto.DetalleActivity;
 import upc.edu.pe.proyecto.R;
 import upc.edu.pe.type.Pedido;
 
@@ -22,7 +26,7 @@ public class HistorialAdapter extends ArrayAdapter<Pedido> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, ViewGroup parent){
 
         //Obteniendo una instancia del inflater
         LayoutInflater inflater = (LayoutInflater)getContext()
@@ -45,9 +49,22 @@ public class HistorialAdapter extends ArrayAdapter<Pedido> {
         TextView subtitulo = (TextView)listItemView.findViewById(R.id.text2);
         ImageView categoria = (ImageView)listItemView.findViewById(R.id.category);
 
-
         //Obteniendo instancia de la Tarea en la posición actual
-        Pedido item = getItem(position);
+        final Pedido item = getItem(position);
+
+        listItemView.setClickable(true);
+        listItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Parametro : ",item.getId_pedido()+"");
+                Intent intent = new Intent(getContext(), DetalleActivity.class);
+                intent.putExtra("pedidoId",item.getId_pedido()+"");
+                getContext().startActivity(intent);
+                getContext().startActivity(new Intent(getContext(), DetalleActivity.class));
+            }
+        });
+
+
 
         int imageURL = R.drawable.pendiente;
         if(item.getEstado().equalsIgnoreCase("A")){
@@ -56,9 +73,11 @@ public class HistorialAdapter extends ArrayAdapter<Pedido> {
             imageURL = R.drawable.pendiente;
         }
 
-        titulo.setText(item.getDireccion() == null ? "No Disponible" : item.getDireccion()  + "-" + item.getDistrito().getNombre());
+        titulo.setText(item.getDireccion() == null ? "No Disponible" : item.getDireccion() + "-" + item.getDistrito().getNombre());
         subtitulo.setText(item.getFecha());
         categoria.setImageResource(imageURL);
+
+
 
         //Devolver al ListView la fila creada
         return listItemView;

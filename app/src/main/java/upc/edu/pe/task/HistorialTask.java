@@ -1,6 +1,7 @@
 package upc.edu.pe.task;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,8 +35,9 @@ import upc.edu.pe.utils.HttpClientUtil;
 public class HistorialTask extends AsyncTask<String,Void,String> {
 
     private Context context;
-    ListView listView;
-    ArrayAdapter arrayAdapter;
+    private ListView listView;
+    private ArrayAdapter arrayAdapter;
+    private ProgressDialog progressDialog;
 
     //Variables
     private Gson json = new Gson();
@@ -46,6 +48,14 @@ public class HistorialTask extends AsyncTask<String,Void,String> {
         this.listView = listView;
         this.arrayAdapter = arrayAdapter;
     }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressDialog = ProgressDialog.show(
+                context, "Por favor espere", "Procesando...");
+    }
+
 
     @Override
     protected String doInBackground(String... params) {
@@ -70,9 +80,7 @@ public class HistorialTask extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         if(result != null){
-            arrayAdapter = new HistorialAdapter(context,listPedidos);
-            listView.setAdapter(arrayAdapter);
-
+            progressDialog.dismiss();
             if(listPedidos.isEmpty()){
                 AlertDialog.Builder dialog = new AlertDialog.Builder(context);
                 dialog.setTitle(R.string.dialog_header);
@@ -85,8 +93,10 @@ public class HistorialTask extends AsyncTask<String,Void,String> {
                         }
                     });
                 dialog.show();
+            }else{
+                arrayAdapter = new HistorialAdapter(context,listPedidos);
+                listView.setAdapter(arrayAdapter);
             }
-
         } else {
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
             dialog.setTitle(R.string.dialog_header);

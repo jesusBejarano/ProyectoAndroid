@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
@@ -10,14 +12,14 @@
         <TextView
             android:layout_column="0"
             android:padding="3dip"
-            android:text="Producto"
+            android:text="Cantidad"
             android:textColor="@android:color/white" />
 
         <TextView
             android:layout_column="1"
             android:padding="3dip"
             android:layout_marginLeft="40dp"
-            android:text="Cantidad"
+            android:text="Producto"
             android:textColor="@android:color/white" />
 
         <TextView
@@ -27,11 +29,15 @@
             android:textColor="@android:color/white" />
     </TableRow>
 
-    <ListView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <TableLayout
+        android:id="@+id/contenedor"
         android:layout_width="match_parent"
-        android:layout_height="401dp"
-        android:id="@+id/listaDetallePedido"/>
+        android:layout_height="430dp"
+
+        android:stretchColumns="1">
+
+    </TableLayout>
+
 
     <View
         android:layout_height="2dip"
@@ -48,7 +54,8 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:padding="3dip"
-            android:text="Total"
+            android:gravity="right"
+            android:text="Total (S/.) :"
             android:textColor="#128675" />
 
         <TextView
@@ -61,12 +68,4 @@
             android:padding="3dip"
             android:text="$48,4" />
     </TableRow>
-    <Button
-        android:id="@+id/btnRegresarDetalle"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="1"
-        android:text="Regresar" />
 </TableLayout>
