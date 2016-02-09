@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -82,9 +83,11 @@ public class MainActivity extends Activity {
 
     if(usuario == null || usuario.isEmpty()){
         result = false;
+        requestFocus(txtUsuario);
         mensaje("Ingrese su usuario.");
     }else if(constrasena == null || constrasena.isEmpty()){
         result = false;
+        requestFocus(txtContrasena);
         mensaje("Ingrese su contraseña.");
     }
 
@@ -96,6 +99,12 @@ public class MainActivity extends Activity {
         dialog.setTitle(R.string.dialog_header);
         dialog.setMessage(mensj);
         dialog.show();
+    }
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
 
     @Override

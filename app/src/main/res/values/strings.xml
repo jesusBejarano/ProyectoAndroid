@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">Proyecto</string>
-
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Pidelo</string>
     <string name="action_settings">Settings</string>
 
     <string name="dialog_header">Mensaje</string>
+
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="correo">Correo</string>
+    <string name="usuario">Usuario</string>
+    <string name="contrasena">Contraseña</string>
 </resources>
