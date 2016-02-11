@@ -100,4 +100,8 @@ public class Cliente implements Serializable{
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+    public String getNombreApe() {
+        return nombre+apellidos;
+    }
 }

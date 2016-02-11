@@ -1,8 +1,18 @@
 <resources>
-    <string name="app_name">Pidelo</string>
+    <string name="app_name">Proyecto</string>
+
     <string name="action_settings">Settings</string>
 
     <string name="dialog_header">Mensaje</string>
+
+
+    <string name="home_item">Home</string>
+    <string name="productos_item">Productos</string>
+    <string name="compras_item">Carrito</string>
+    <string name="ordenes_item">Ordenes</string>
+    <string name="facturas_item">Facturas</string>
+    <string name="log_out_item">Cerrar Sesión</string>
+    <string name="configuracion_item">Configuración</string>
 
     <string name="nombre">Nombre</string>
     <string name="apellidos">Apellidos</string>

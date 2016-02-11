@@ -3,15 +3,14 @@ package upc.edu.pe.task;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.gson.Gson;
 
+import upc.edu.pe.Global.Globals;
 import upc.edu.pe.proyecto.MainActivity;
-import upc.edu.pe.proyecto.MenuActivity;
 import upc.edu.pe.proyecto.R;
 import upc.edu.pe.type.Cliente;
 import upc.edu.pe.utils.HttpClientUtil;
@@ -62,9 +61,10 @@ public class LoginTask extends AsyncTask<String,Void,String> {
             dialog.setMessage("Usuario o Contraseña no son válidos.");
             dialog.show();
         }else{
-            Intent i = new Intent(context, MenuActivity.class);
+            Intent i = new Intent(context, MainActivity.class);
             Gson gson = new Gson();
             Cliente cli = gson.fromJson(result,Cliente.class);
+            Globals.cliente_login=cli;
             Log.d("Enviar",cli.getId_cliente()+"");
             i.putExtra("cliente",cli.getId_cliente()+"");
             context.startActivity(i);
