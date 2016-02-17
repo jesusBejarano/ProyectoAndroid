@@ -8,8 +8,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,7 +49,7 @@ public class MantenimientoActivity extends Activity  {
     private EditText txtTelefono;
     private EditText txtDireccion;
     private Button btnActualizar;
-    private Button btnCancelar;
+    private TextInputLayout inputLayoutCorreoM,inputLayoutNombreM,inputLayoutApellidoM,inputLayoutUsuarioM,inputLayoutContrasenaM,inputLayoutTelefonoM,inputLayoutDireccionM;
     //Type
     public Cliente cliente;
     //JSON
@@ -75,7 +80,22 @@ public class MantenimientoActivity extends Activity  {
         txtTelefono  = (EditText) findViewById(R.id.txtTelefonoM);
         txtDireccion =   (EditText) findViewById(R.id.txtDireccionM);
         btnActualizar = (Button)findViewById(R.id.btnActualizarM);
-        btnCancelar = (Button)findViewById(R.id.btnCancelarM);
+
+        inputLayoutCorreoM = (TextInputLayout) findViewById(R.id.input_layout_correoM);
+        inputLayoutNombreM = (TextInputLayout) findViewById(R.id.input_layout_nombreM);
+        inputLayoutApellidoM = (TextInputLayout) findViewById(R.id.input_layout_apellidoM);
+        inputLayoutUsuarioM = (TextInputLayout) findViewById(R.id.input_layout_usuarioM);
+        inputLayoutContrasenaM = (TextInputLayout) findViewById(R.id.input_layout_contrasenaM);
+        inputLayoutTelefonoM = (TextInputLayout) findViewById(R.id.input_layout_telefonoM);
+        inputLayoutDireccionM = (TextInputLayout) findViewById(R.id.input_layout_direccionM);
+
+        txtUsuario.addTextChangedListener(new MyTextWatcher(txtUsuario));
+        txtContrasena.addTextChangedListener(new MyTextWatcher(txtContrasena));
+        txtNombre.addTextChangedListener(new MyTextWatcher(txtNombre));
+        txtApellido.addTextChangedListener(new MyTextWatcher(txtApellido));
+        txtCorreo.addTextChangedListener(new MyTextWatcher(txtCorreo));
+        txtTelefono.addTextChangedListener(new MyTextWatcher(txtTelefono));
+        txtDireccion.addTextChangedListener(new MyTextWatcher(txtDireccion));
 
         new DistritoTask(MantenimientoActivity.this,spinnerDistrito).execute("");
         new ClienteJSON().execute("");
@@ -95,19 +115,9 @@ public class MantenimientoActivity extends Activity  {
                     cliente.getDistrito().setId_distrito(spinnerDistrito.getSelectedItemPosition());
                     String json = gson.toJson(cliente);
                     new MantenimientoTask(MantenimientoActivity.this).execute(json);
-                }else{
-                    mensaje();
                 }
             }
         });
-
-        btnCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mostrarActivity(MenuActivity.class);
-            }
-        });
-
 
     }
 
@@ -128,40 +138,168 @@ public class MantenimientoActivity extends Activity  {
     }
 
     public boolean camposVacios() {
-
         boolean result = true;
-        String usuario = txtUsuario.getText().toString().trim();
-        String constrasena = txtContrasena.getText().toString().trim();
-        String nombre = txtNombre.getText().toString().trim();
-        String apellido = txtApellido.getText().toString().trim();
-        String correo = txtCorreo.getText().toString().trim();
-        String direccion = txtDireccion.getText().toString().trim();
-        String telefono = txtTelefono.getText().toString().trim();
 
-        if(usuario == null || usuario.isEmpty()){
+        if(!validarNombre()){
+            result =  false;
+        } else if(!validarApellidos()){
+            result =  false;
+        }else  if(!validarEmail()){
             result = false;
-        }else if(constrasena == null || constrasena.isEmpty()){
+        }else if(!validarUsuario()){
             result = false;
-        }else if(nombre ==null || nombre.isEmpty()){
+        }else if(!validarContrasena()){
             result = false;
-        }else if(apellido == null || apellido.isEmpty()){
+        }else if(!validarDireccion()){
             result = false;
-        }else if(correo == null || correo.isEmpty()){
-            result = false;
-        }else if(telefono == null || telefono.isEmpty()){
-            result = false;
-        }else if(direccion == null || direccion.isEmpty()){
+        }else if(!validarTelefono()){
             result = false;
         }
 
         return result;
     }
 
-    public void mensaje(){
-        AlertDialog.Builder dialog = new AlertDialog.Builder(MantenimientoActivity.this);
-        dialog.setTitle(R.string.dialog_header);
-        dialog.setMessage("Debe ingresar todo los campos.");
-        dialog.show();
+    private boolean validarNombre() {
+        if (txtNombre.getText().toString().trim().isEmpty()) {
+            inputLayoutNombreM.setError("Ingrese nombre");
+            requestFocus(txtNombre);
+            return false;
+        } else {
+            inputLayoutNombreM.setError(null);
+            inputLayoutNombreM.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private boolean validarApellidos() {
+        if (txtApellido.getText().toString().trim().isEmpty()) {
+            inputLayoutApellidoM.setError("Ingrese apellidos");
+            requestFocus(txtApellido);
+            return false;
+        } else {
+            inputLayoutApellidoM.setError(null);
+            inputLayoutApellidoM.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private boolean validarUsuario() {
+        if (txtUsuario.getText().toString().trim().isEmpty()) {
+            inputLayoutUsuarioM.setError("Ingrese usuario");
+            requestFocus(txtUsuario);
+            return false;
+        } else {
+            inputLayoutUsuarioM.setError(null);
+            inputLayoutUsuarioM.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private boolean validarContrasena() {
+        if (txtContrasena.getText().toString().trim().isEmpty()) {
+            inputLayoutContrasenaM.setError("Ingrese contraseña");
+            requestFocus(txtContrasena);
+            return false;
+        } else {
+            inputLayoutContrasenaM.setError(null);
+            inputLayoutContrasenaM.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private boolean validarEmail() {
+        String email = txtCorreo.getText().toString().trim();
+        if (email.isEmpty() || !isValidEmail(email)) {
+            inputLayoutCorreoM.setError("Ingrese formato válido de correo");
+            requestFocus(txtCorreo);
+            return false;
+        } else {
+            inputLayoutCorreoM.setError(null);
+            inputLayoutCorreoM.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private static boolean isValidEmail(String email) {
+        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private boolean validarDireccion() {
+        if (txtDireccion.getText().toString().trim().isEmpty()) {
+            inputLayoutDireccionM.setError("Ingrese dirección");
+            requestFocus(txtDireccion);
+            return false;
+        } else {
+            inputLayoutDireccionM.setError(null);
+            inputLayoutDireccionM.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private boolean validarTelefono() {
+        if (txtTelefono.getText().toString().trim().isEmpty()) {
+            inputLayoutTelefonoM.setError("Ingrese telefono");
+            requestFocus(txtTelefono);
+            return false;
+        } else {
+            inputLayoutTelefonoM.setError(null);
+            inputLayoutTelefonoM.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+    }
+
+    private class MyTextWatcher implements TextWatcher {
+
+        private View view;
+
+        private MyTextWatcher(View view) {
+            this.view = view;
+        }
+
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+
+        public void afterTextChanged(Editable editable) {
+            switch (view.getId()) {
+                case R.id.txtNombreM:
+                    validarNombre();
+                    break;
+                case R.id.txtApellidoM:
+                    validarApellidos();
+                    break;
+                case R.id.txtCorreoM:
+                    validarEmail();
+                    break;
+                case R.id.txtUsuarioM:
+                    validarUsuario();
+                    break;
+                case R.id.txtContrasenaM:
+                    validarContrasena();
+                    break;
+                case R.id.txtTelefonoM:
+                    validarContrasena();
+                    break;
+                case R.id.txtDireccionM:
+                    validarContrasena();
+                    break;
+            }
+        }
     }
 
     class ClienteJSON extends AsyncTask<String,Void,String> {

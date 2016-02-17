@@ -35,10 +35,7 @@ public class DetalleTask extends AsyncTask<String,Void,String> {
     private Context context;
     private ProgressDialog progressDialog;
     private TableLayout table;
-    private TextView textView;
-
-    //ListView listView;
-    //ArrayAdapter arrayAdapter;
+    private TextView arrayAdapter;
 
     //Variables
     private Gson json = new Gson();
@@ -47,7 +44,7 @@ public class DetalleTask extends AsyncTask<String,Void,String> {
     public DetalleTask(Context context,TableLayout table,TextView textView) {
         this.context = context;
         this.table = table;
-        this.textView = textView;
+        this.arrayAdapter = textView;
     }
 
     @Override
@@ -121,7 +118,7 @@ public class DetalleTask extends AsyncTask<String,Void,String> {
                     total += deta.getTotal();
                     x++;
                 }
-                textView.setText(formatearDecimales(total));
+                arrayAdapter.setText(formatearDecimales(total));
                 progressDialog.dismiss();
             }
 

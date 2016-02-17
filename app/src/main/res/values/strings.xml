@@ -19,4 +19,8 @@
     <string name="correo">Correo</string>
     <string name="usuario">Usuario</string>
     <string name="contrasena">Contraseña</string>
+    <string name="telefono">Telefono</string>
+    <string name="direccion">Dirección</string>
+
+    <string name="title_activity_carrito">Carrito de Productos</string>
 </resources>

@@ -15,7 +15,7 @@ import java.net.URL;
  */
 public class HttpClientUtil {
 
-    static String host = "192.168.0.13:8080";
+    static String host = "192.168.0.4:8080";
 
     public static String POST(String urlRest, String param) throws Exception {
         HttpURLConnection conn = null;

@@ -85,8 +85,6 @@ public class UsuarioActivity extends Activity {
                     String json = gson.toJson(cliente);
                     Log.d("Json Cliente : " , json );
                     new UsuarioTask(UsuarioActivity.this).execute(json);
-                }else{
-                    // mensaje();
                 }
             }
         });
@@ -123,20 +121,6 @@ public class UsuarioActivity extends Activity {
         }
 
         return result;
-    }
-
-    public void mensaje(){
-        AlertDialog.Builder dialog = new AlertDialog.Builder(UsuarioActivity.this);
-        dialog.setTitle(R.string.dialog_header);
-        dialog.setMessage("Debe ingresar todo los campos.");
-  /*      dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent i = new Intent(context, MainActivity.class);
-                context.startActivity(i);
-            }
-        });*/
-        dialog.show();
     }
 
     private boolean validarNombre() {

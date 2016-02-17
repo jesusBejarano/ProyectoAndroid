@@ -14,7 +14,6 @@ import upc.edu.pe.task.CatalogoTask;
 public class CatalogoActivity extends Activity {
 
     private RecyclerView recycler;
-    private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
 
 
@@ -30,7 +29,7 @@ public class CatalogoActivity extends Activity {
         lManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(lManager);
 
-        new CatalogoTask(CatalogoActivity.this,recycler,adapter).execute("");
+        new CatalogoTask(CatalogoActivity.this,recycler).execute("");
 
     }
 

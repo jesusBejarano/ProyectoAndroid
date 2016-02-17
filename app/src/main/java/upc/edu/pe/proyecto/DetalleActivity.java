@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,13 +21,10 @@ import upc.edu.pe.task.HistorialTask;
  */
 public class DetalleActivity extends Activity {
     //Variables
-    private TableLayout table;
-    private TextView textView;
-    //private ListView listView;
-    //private ArrayAdapter arrayAdapter;
-    //private Button btnRegresar;
+    private TableLayout layout;
+    private TextView total;
     //Otros
-    public Integer pedidoId;
+    public String pedidoId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,23 +33,13 @@ public class DetalleActivity extends Activity {
         //Obetener Intent
         Intent intent = getIntent();
         //Extrayendo el extra de tipo cadena
-        pedidoId = intent.getIntExtra("pedidoId",0);
-        //Inicializamos los tipos de la variables
-     //   btnRegresar = (Button) findViewById(R.id.btnRegresarDetalle);
-     //   listView = (ListView) findViewById(R.id.listaDetallePedido);
+        pedidoId = intent.getStringExtra("pedidoId");
+        Log.d("PEDIDO : ", pedidoId);
 
-        table = (TableLayout) findViewById(R.id.contenedor);
-        textView = (TextView) findViewById(R.id.txtTotal);
+        layout = (TableLayout) findViewById(R.id.contenedor);
 
-        new DetalleTask(DetalleActivity.this,table,textView).execute(pedidoId.toString());
-
-   /*     btnRegresar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mostrarActivity(MenuActivity.class);
-            }
-        });
-*/
+        total = (TextView) findViewById(R.id.txtTotal);
+        new DetalleTask(DetalleActivity.this,layout,total).execute(pedidoId);
     }
 
     private void mostrarActivity(Class view){

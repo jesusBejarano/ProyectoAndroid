@@ -13,6 +13,7 @@ import upc.edu.pe.Global.Globals;
 import upc.edu.pe.proyecto.MainActivity;
 import upc.edu.pe.proyecto.R;
 import upc.edu.pe.type.Cliente;
+import upc.edu.pe.utils.CarritoDAO;
 import upc.edu.pe.utils.HttpClientUtil;
 
 /**
@@ -67,6 +68,8 @@ public class LoginTask extends AsyncTask<String,Void,String> {
             Globals.cliente_login=cli;
             Log.d("Enviar",cli.getId_cliente()+"");
             i.putExtra("cliente",cli.getId_cliente()+"");
+            //Creacion de la BD Interna
+            CarritoDAO carrito=  CarritoDAO.getInstance(context);
             context.startActivity(i);
         }
 

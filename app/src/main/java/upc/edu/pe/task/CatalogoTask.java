@@ -47,10 +47,9 @@ public class CatalogoTask extends AsyncTask<String,Void,String> {
     private List<Producto> listProductos;
 
 
-    public CatalogoTask(Context context,RecyclerView listView, RecyclerView.Adapter arrayAdapter) {
+    public CatalogoTask(Context context,RecyclerView listView) {
         this.context = context;
         this.recycler = listView;
-        this.adapter = arrayAdapter;
     }
 
     @Override
@@ -88,7 +87,7 @@ public class CatalogoTask extends AsyncTask<String,Void,String> {
                 progressDialog.dismiss();
                 AlertDialog.Builder dialog = new AlertDialog.Builder(context);
                 dialog.setTitle(R.string.dialog_header);
-                dialog.setMessage("No productos para mostrar.");
+                dialog.setMessage("No hay productos para mostrar.");
                 dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
