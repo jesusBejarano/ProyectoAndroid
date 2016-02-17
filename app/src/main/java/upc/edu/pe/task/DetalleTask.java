@@ -35,7 +35,7 @@ public class DetalleTask extends AsyncTask<String,Void,String> {
     private Context context;
     private ProgressDialog progressDialog;
     private TableLayout table;
-    private TextView arrayAdapter;
+    private TextView txtTotal;
 
     //Variables
     private Gson json = new Gson();
@@ -44,7 +44,7 @@ public class DetalleTask extends AsyncTask<String,Void,String> {
     public DetalleTask(Context context,TableLayout table,TextView textView) {
         this.context = context;
         this.table = table;
-        this.arrayAdapter = textView;
+        this.txtTotal = textView;
     }
 
     @Override
@@ -78,9 +78,6 @@ public class DetalleTask extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result) {
         if(result != null){
-        /*    arrayAdapter = new DetalleAdapter(context,listDetallePedidos);
-            listView.setAdapter(arrayAdapter);*/
-
             if(listDetallePedidos.isEmpty()){
                 progressDialog.dismiss();
                 AlertDialog.Builder dialog = new AlertDialog.Builder(context);
@@ -118,7 +115,7 @@ public class DetalleTask extends AsyncTask<String,Void,String> {
                     total += deta.getTotal();
                     x++;
                 }
-                arrayAdapter.setText(formatearDecimales(total));
+                txtTotal.setText(formatearDecimales(total));
                 progressDialog.dismiss();
             }
 
@@ -127,6 +124,13 @@ public class DetalleTask extends AsyncTask<String,Void,String> {
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
             dialog.setTitle(R.string.dialog_header);
             dialog.setMessage("Error en cargar Detalle de Pedido.");
+            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(context, HistorialActivity.class);
+                context.startActivity(i);
+            }
+            });
             dialog.show();
         }
     }
