@@ -82,9 +82,6 @@ public class CarritoActivity extends AppCompatActivity {
         carritoDao = CarritoDAO.getInstance(this);
         try {
             list = carritoDao.obtenerTodos();
-            for (Carrito ca : list) {
-                Log.d("Carrito : ", String.valueOf(ca.getIdProducto()));
-            }
         } catch (DAOExcepcion daoExcepcion) {
             Log.i("Listar Carrito", "====> " + daoExcepcion.getMessage());
         }

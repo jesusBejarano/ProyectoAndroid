@@ -75,7 +75,6 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
         viewHolder.carrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "El producto es : " + items.get(posicion).getNombre(), Toast.LENGTH_SHORT).show();
                 try {
                     Carrito carrit = items.get(posicion);
                     carritoDao = CarritoDAO.getInstance(v.getContext());
@@ -83,7 +82,8 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
                         carritoDao.eliminar(carrit.getIdProducto());
                         mostrarMensaje(v, "Se Eliminó el producto de su carrito");
                         items.remove(posicion);
-                        notifyItemRemoved(posicion);
+                        ///notifyItemRemoved(posicion);
+                        notifyDataSetChanged();
 
                     }else{
                         carrit.setCantidad(carrit.getCantidad() - 1);
