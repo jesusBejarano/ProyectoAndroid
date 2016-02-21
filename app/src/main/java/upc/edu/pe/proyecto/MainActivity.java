@@ -13,16 +13,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import upc.edu.pe.Fragmentos.FragmentoCarrito;
+import upc.edu.pe.Fragmentos.FragmentoPedidos;
 import upc.edu.pe.Fragmentos.FragmentoProductos;
 import upc.edu.pe.Global.Globals;
 
 public class MainActivity extends AppCompatActivity {
+
+
     /**
      * Instancia del drawer
      */
+
     TextView txtuser;
     TextView txtmail;
     private DrawerLayout drawerLayout;
+
+    NavigationView navigationView;
 
     /**
      * Titulo inicial del drawer
@@ -35,13 +42,17 @@ public class MainActivity extends AppCompatActivity {
         setToolbar(); // Setear Toolbar como action bar
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         if (navigationView != null) {
             prepararDrawer(navigationView);
             // Seleccionar item por defecto
             seleccionarItem(navigationView.getMenu().getItem(1));
         }
+    }
+    public void SelecionarMenu(int indexmenu)
+    {
+        seleccionarItem(navigationView.getMenu().getItem(indexmenu));
     }
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -67,7 +78,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_productos:
                 fragmentoGenerico = new FragmentoProductos();
                 break;
-
+            case R.id.nav_ordenes:
+                fragmentoGenerico = new FragmentoPedidos();
+                break;
+            case R.id.nav_carrito:
+                fragmentoGenerico = new FragmentoCarrito();
+                break;
 
         }
         if (fragmentoGenerico != null) {
