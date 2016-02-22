@@ -58,8 +58,8 @@ public class PedidoActivity extends AppCompatActivity {
         setContentView(R.layout.pedido_main);
 
         SharedPreferences prefs =  getSharedPreferences("MyCliente", Context.MODE_PRIVATE);
-       //Extrayendo el extra de tipo cadena
-       clienteId = prefs.getString("idCliente", "0");
+        //Extrayendo el extra de tipo cadena
+        clienteId = prefs.getString("idCliente", "0");
 
         //Obetener Intent
         Intent intent = getIntent();
@@ -83,7 +83,7 @@ public class PedidoActivity extends AppCompatActivity {
         cliente = new Cliente();
         gson = new Gson();
 
-        new ClienteTask().execute("1"/*clienteId*/);
+        new ClienteTask().execute(clienteId);
 
         obtenerFecha();
         armarDetallePedido();

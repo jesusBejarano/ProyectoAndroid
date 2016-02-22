@@ -24,7 +24,5 @@
 
     <string name="title_activity_carrito">Carrito de Productos</string>
     <string name="title_activity_pedidos">PedidosActivity</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_pedido">PedidoActivity</string>
 </resources>
