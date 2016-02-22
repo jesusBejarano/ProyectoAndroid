@@ -180,7 +180,7 @@ public class PedidoActivity extends AppCompatActivity {
 
                 item++;
             }
-            txtTotal.setText(formatearDecimales(total));
+            txtTotal.setText("S/." + formatearDecimales(total));
         } catch (DAOExcepcion daoExcepcion) {
             Log.i("Listar Carrito Pedido", "====> " + daoExcepcion.getMessage());
         }

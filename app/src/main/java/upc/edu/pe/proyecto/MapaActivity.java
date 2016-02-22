@@ -33,21 +33,21 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class MapaActivity extends FragmentActivity implements LocationListener, GoogleMap.OnMarkerDragListener {
+import upc.edu.pe.service.Localizador;
+
+public class MapaActivity extends FragmentActivity implements GoogleMap.OnMarkerDragListener {
 
     //Variables
     EditText txtDireccionMapa;
     Button btnAceptar;
+    Button btnRegresar;
 
     //Variables Mapa
-    LocationManager locationManager;
     GoogleMap googleMap;
-    Location location;
     Marker marcador;
 
-
     //Otros
-    Double latitud,longitud;
+    Localizador obj;
     String baseActivity;
 
     @Override
@@ -62,25 +62,32 @@ public class MapaActivity extends FragmentActivity implements LocationListener, 
         Log.d("Base : ", baseActivity);
 
         txtDireccionMapa = (EditText) findViewById(R.id.txtDireccionMapa);
-
         btnAceptar = (Button) findViewById(R.id.btnAceptarMapa);
+        btnRegresar = (Button) findViewById(R.id.btnRegresarMapa);
 
         googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapa_inicial)).getMap();
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.setOnMarkerDragListener(this);
-        //      googleMap.setOnMarkerClickListener(this);
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
+        obj = new Localizador(this);
         obtenerLocalizacionActual();
-
-
 
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                obj.stopUsingGPS();
                 Intent intent = new Intent(MapaActivity.this, PedidoActivity.class);
-                intent.putExtra("Direccion",txtDireccionMapa.getText().toString());
+                intent.putExtra("Direccion", txtDireccionMapa.getText().toString());
+                startActivity(intent);
+            }
+        });
+
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                obj.stopUsingGPS();
+                Intent intent = new Intent(MapaActivity.this, PedidoActivity.class);
+                intent.putExtra("Direccion", "");
                 startActivity(intent);
             }
         });
@@ -110,52 +117,14 @@ public class MapaActivity extends FragmentActivity implements LocationListener, 
     }
 
     private void obtenerLocalizacionActual(){
-        // Estado GPS
-        boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        // Estado Internet
-        boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-        //Si el GPS no está habilitado
-        if (!isGPSEnabled && !isNetworkEnabled) {
-            Toast.makeText(MapaActivity.this, "Active su GPS para obtener su ubicación precisa", Toast.LENGTH_LONG).show();
-        } else {
-            if ( Build.VERSION.SDK_INT >= 23 &&
-                    ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return  ;
-            }
-
-            if (isNetworkEnabled) {
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,15000, 0, this);
-                Log.d("activity", "Network Enabled");
-                if (locationManager != null) {
-                    location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                    if (location != null) {
-                        Log.d("activity", "LOC by Network");
-                        latitud = location.getLatitude();
-                        longitud = location.getLongitude();
-                    }
-                }
-            }
-
-            if (isGPSEnabled) {
-                if (location == null) {
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,15000,0, this);
-                    Log.d("activity", "GPS Enabled");
-                    if (locationManager != null) {
-                        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        if (location != null) {
-                            Log.d("activity", "RLOC: loc by GPS");
-                            latitud = location.getLatitude();
-                            longitud = location.getLongitude();
-                        }
-                    }
-                }
-            }
+        if(obj.canGetLocation()){
+            obtenerDireccion(obj.getLatitude(), obj.getLongitude());
+            pintarMarcador(obj.getLatitude(), obj.getLongitude());
+        }else{
+            obj.showSettingsAlert();
         }
 
-        obtenerDireccion(latitud, longitud);
-        pintarMarcador(latitud, longitud);
     }
 
     private void pintarMarcador(double latitud,double longitud) {
@@ -189,27 +158,8 @@ public class MapaActivity extends FragmentActivity implements LocationListener, 
     }
 
     @Override
-    public void onLocationChanged(Location location) {
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-
-    @Override
     public void onMarkerDrag(Marker marker) {
-        Toast.makeText(this,"Seleccione una nueva dirección", Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Seleccione una nueva dirección", Toast.LENGTH_SHORT).show();
     }
 
     @Override
