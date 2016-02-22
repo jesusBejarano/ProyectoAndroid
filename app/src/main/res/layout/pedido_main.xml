@@ -1,7 +1,199 @@
-<android.support.v7.widget.RecyclerView
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/reciclerpedidos"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="3dp"
-    android:scrollbars="vertical" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_alignParentBottom="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#890000"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:text="Pedido de Cliente"
+                android:id="@+id/textView7" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Nombre : "
+                android:textStyle="bold"
+                android:id="@+id/textView" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/txtNombre"
+                android:layout_gravity="center_vertical|right"
+                android:gravity="right"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Apellido : "
+                android:textStyle="bold"
+                android:id="@+id/textView1" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/txtApellido"
+                android:layout_gravity="center_vertical|right"
+                android:gravity="right" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Fecha : "
+                android:textStyle="bold"
+                android:id="@+id/textView2" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/txtFecha"
+                android:layout_gravity="center_vertical|right"
+                android:gravity="right" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Direccion de Entrega : "
+                android:textStyle="bold"
+                android:id="@+id/textView3" />
+
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtDireccion"
+                android:singleLine="true"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Otra Dirección"
+                android:id="@+id/btnDireccion"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Detalle Pedido : "
+                android:textStyle="bold"
+                android:id="@+id/textView4" />
+
+            <TableLayout
+                android:id="@+id/contenedorPedido"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1">
+
+                <TableRow android:background="@color/primaryColor">
+
+                    <TextView
+                        android:layout_column="0"
+                        android:padding="3dip"
+                        android:text="Cantidad"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:layout_marginLeft="40dp"
+                        android:text="Producto"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:layout_column="2"
+                        android:padding="3dip"
+                        android:text="Subtotal"
+                        android:textColor="@android:color/white" />
+                </TableRow>
+
+            </TableLayout>
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Total del Pedido : "
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:id="@+id/textView5" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/txtTotalP"
+                android:layout_gravity="center_vertical|right"
+                android:gravity="right" />
+
+            <LinearLayout
+                android:id="@+id/bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCancelar"
+                    android:layout_width="0dp"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cancelar" />
+
+                <Button
+                    android:id="@+id/btnPedir"
+                    android:layout_width="0dp"
+                    android:backgroundTint="@color/accentColor"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Pedir"    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

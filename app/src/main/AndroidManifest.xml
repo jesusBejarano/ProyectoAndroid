@@ -27,7 +27,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.mimenu" >
-
         <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,9 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivity" >
-
         </activity>
         <activity android:name=".MenuActivity" >
         </activity>
@@ -51,17 +48,12 @@
         </activity>
         <activity android:name=".MapaActivity" >
         </activity>
-
-        <activity android:name=".PedidoActivity" >
-        </activity>
-
         <activity android:name=".CatalogoActivity" >
         </activity>
         <activity
             android:name=".CarritoActivity"
             android:label="@string/title_activity_carrito" >
         </activity>
-
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -70,6 +62,14 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAJUVGad0o361bvmMDPm2vOKM0rq9p6D-k" />
 
+        <activity
+            android:name=".PedidosActivity"
+            android:label="@string/title_activity_pedidos" >
+        </activity>
+        <activity
+            android:name=".PedidoActivity"
+            android:label="@string/title_activity_pedido" >
+        </activity>
     </application>
 
 </manifest>

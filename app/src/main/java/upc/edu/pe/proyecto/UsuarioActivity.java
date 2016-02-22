@@ -32,7 +32,7 @@ public class UsuarioActivity extends Activity {
     private EditText txtApellido;
     private EditText txtCorreo;
     private Button btnRegistrar;
-    private TextView btnCancelar;
+    private Button btnCancelar;
     private TextInputLayout inputLayoutCorreo,inputLayoutNombre,inputLayoutApellido,inputLayoutUsuario,inputLayoutContrasena;
     //Type
     public Cliente cliente;
@@ -54,7 +54,7 @@ public class UsuarioActivity extends Activity {
         txtApellido = (EditText) findViewById(R.id.txtApellidosR);
         txtCorreo= (EditText) findViewById(R.id.txtCorreoR);
         btnRegistrar = (Button)findViewById(R.id.btnRegistrarR);
-        btnCancelar = (TextView)findViewById(R.id.btnCancelarR);
+        btnCancelar = (Button)findViewById(R.id.btnCancelarR);
 
         inputLayoutCorreo = (TextInputLayout) findViewById(R.id.input_layout_correo);
         inputLayoutNombre = (TextInputLayout) findViewById(R.id.input_layout_nombre);

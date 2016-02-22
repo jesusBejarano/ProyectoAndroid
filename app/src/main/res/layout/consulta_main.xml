@@ -7,7 +7,7 @@
         android:layout_height="40dp"
         android:text="Historial"
         android:textStyle="bold"
-        android:background="#ff0093ff"
+        android:background="@color/primaryColor"
         android:gravity="center" />
 
     <ListView

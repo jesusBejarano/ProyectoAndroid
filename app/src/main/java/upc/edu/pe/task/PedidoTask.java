@@ -6,48 +6,34 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.List;
-
-import upc.edu.pe.adapter.CatalogoAdapter;
-import upc.edu.pe.adapter.PedidoAdapter;
+import upc.edu.pe.proyecto.CarritoActivity;
+import upc.edu.pe.proyecto.MainActivity;
 import upc.edu.pe.proyecto.MenuActivity;
-import upc.edu.pe.type.Pedido;
+import upc.edu.pe.proyecto.R;
+import upc.edu.pe.utils.CarritoDAO;
+import upc.edu.pe.utils.DAOExcepcion;
 import upc.edu.pe.utils.HttpClientUtil;
 
 /**
- * Created by jesus on 21/02/2016.
+ * Created by Miguel Cardoso on 21/02/2016.
  */
 public class PedidoTask extends AsyncTask<String,Void,String> {
 
-    private Context context;
     private ProgressDialog progressDialog;
-    private RecyclerView recycler;
-    private RecyclerView.Adapter adapter;
+    private Context context;
+    private CarritoDAO carritoDao;
 
-
-    //Variables
-    private Gson json = new Gson();
-    private List<Pedido> listPedidos;
-
-
-    public PedidoTask(Context context,RecyclerView listView, RecyclerView.Adapter arrayAdapter) {
-
+    public PedidoTask(Context context) {
         this.context = context;
-        this.recycler = listView;
-        this.adapter = arrayAdapter;
     }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         progressDialog = ProgressDialog.show(
-                context, "Por favor espere", "Cargando...");
+                context, "Por favor espere", "Procesando...");
     }
 
 
@@ -56,53 +42,54 @@ public class PedidoTask extends AsyncTask<String,Void,String> {
         HttpClientUtil RestClient = new HttpClientUtil();
         String mensaje="";
         try {
-            String result = RestClient.GET("pedidos/todos");
-            Thread.sleep(2000);
-            if(result != null || !result.isEmpty()){
-                Type type = new TypeToken<List<Pedido>>(){}.getType();
-                listPedidos = json.fromJson(result, type);
-                mensaje = result;
+
+            String result = RestClient.POST("pedidos/insertar",params[0]);
+            if(result.equalsIgnoreCase("OK")){
+                mensaje = "Pedido Registrado";
+            }else{
+                mensaje = "No se pudo Registrar su pedido";
             }
 
         } catch (Exception e) {
-            mensaje = null;
+            mensaje = "No se pudo Registrar su Pedido";
             e.printStackTrace();
-            Log.d("Error en Task Pedido:", e.getMessage());
+            Log.d("Error en Task Pedido :", e.getMessage());
         }
+
         return mensaje;
     }
 
     @Override
-    protected void onPostExecute(String result) {
-        if(result != null){
-
-
-            if(listPedidos.isEmpty()){
-
-                AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-                dialog.setTitle("Mensaje");
-                dialog.setMessage("No hay Pedidos En Estado Pendiente.");
-                dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+    protected void onPostExecute(final String result) {
+        progressDialog.dismiss();
+        final String mensaje = result;
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle(R.string.dialog_header);
+        dialog.setMessage(mensaje);
+        if(result.equalsIgnoreCase("Pedido Registrado")) {
+            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if(mensaje.equalsIgnoreCase("Pedido Registrado")) {
+                        eliminarCarrrito();
                         Intent i = new Intent(context, MenuActivity.class);
                         context.startActivity(i);
+                    }else{
+                        Intent i = new Intent(context, CarritoActivity.class);
+                        context.startActivity(i);
                     }
-                });
-                dialog.show();
-            }
-            else{
-                //Creamos el adaptador
-                adapter = new PedidoAdapter(listPedidos,context);
-                recycler.setAdapter(adapter);
-                progressDialog.dismiss();
-            }
-        } else {
-            progressDialog.dismiss();
-            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-            dialog.setTitle("Mensaje");
-            dialog.setMessage("Error en Cargar Las Ordenes de Pedido.");
-            dialog.show();
+                }
+            });}
+        dialog.show();
+
+    }
+
+    private void eliminarCarrrito(){
+        carritoDao = CarritoDAO.getInstance(context);
+        try {
+            carritoDao.eliminarTodos();
+        } catch (DAOExcepcion daoExcepcion) {
+            Log.i("Eliminar Carrito Pedido", "====> " + daoExcepcion.getMessage());
         }
     }
 }

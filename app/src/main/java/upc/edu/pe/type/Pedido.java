@@ -1,5 +1,7 @@
 package upc.edu.pe.type;
 
+import java.util.List;
+
 /**
  * Created by Miguel Cardoso on 09/10/2015.
  */
@@ -11,9 +13,8 @@ public class Pedido {
     private String fecha;
     private Double monto;
 
-   /* private List<DetallePedido> listDetallePedidos;*/
+    private List<DetallePedido> listDetallePedidos;
     private Distrito distrito;
-
     private Cliente cliente;
 
     public Pedido() {
@@ -67,13 +68,13 @@ public class Pedido {
         this.monto = monto;
     }
 
-  /*  public List<DetallePedido> getListDetallePedidos() {
+    public List<DetallePedido> getListDetallePedidos() {
         return listDetallePedidos;
     }
 
     public void setListDetallePedidos(List<DetallePedido> listDetallePedidos) {
         this.listDetallePedidos = listDetallePedidos;
-    }*/
+    }
 
     public Distrito getDistrito() {
         return distrito;

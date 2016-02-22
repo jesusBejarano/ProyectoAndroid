@@ -19,7 +19,7 @@
         android:id="@+id/txtDireccionMapa"/>
 
     <Button
-        android:id="@+id/btnAceptar"
+        android:id="@+id/btnAceptarMapa"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Aceptar" />
