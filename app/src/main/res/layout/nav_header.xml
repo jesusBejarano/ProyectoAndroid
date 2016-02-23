@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        />
 
     <!-- Correo de la cuenta -->
     <TextView

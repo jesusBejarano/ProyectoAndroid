@@ -16,6 +16,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import upc.edu.pe.adapter.PedidoPendienteAdapter;
+import upc.edu.pe.proyecto.MainActivity;
 import upc.edu.pe.proyecto.MenuActivity;
 import upc.edu.pe.type.Pedido;
 import upc.edu.pe.utils.HttpClientUtil;
@@ -84,7 +85,7 @@ public class PedidosPendientesTask extends AsyncTask<String,Void,String> {
                 dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent i = new Intent(context, MenuActivity.class);
+                        Intent i = new Intent(context, MainActivity.class);
                         context.startActivity(i);
                     }
                 });

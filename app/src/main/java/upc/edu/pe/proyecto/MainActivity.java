@@ -12,9 +12,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import upc.edu.pe.Fragmentos.FragmentoCarrito;
+import upc.edu.pe.Fragmentos.FragmentoMantenimientoUsuario;
 import upc.edu.pe.Fragmentos.FragmentoPedidosPendientes;
 import upc.edu.pe.Fragmentos.FragmentoProductos;
 import upc.edu.pe.Global.Globals;
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         setToolbar(); // Setear Toolbar como action bar
 
@@ -69,6 +73,19 @@ public class MainActivity extends AppCompatActivity {
         txtmail=(TextView) findViewById(R.id.email);
         txtmail.setText(Globals.cliente_login.getCorreo());
 
+        txtuser.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                CargarFragmento();
+            }
+
+        });
+
+
+
+
+
     }
 
     private void seleccionarItem(MenuItem itemDrawer) {
@@ -77,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
         switch (itemDrawer.getItemId()) {
             case R.id.nav_productos:
+                fragmentoGenerico = new FragmentoProductos();
+                break;
+            case R.id.nav_home:
                 fragmentoGenerico = new FragmentoProductos();
                 break;
             case R.id.nav_ordenes:
@@ -107,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         // Setear título actual
         setTitle(itemDrawer.getTitle());
     }
+
     private void prepararDrawer(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -136,4 +157,25 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    //evento del boton back
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press;
+    }
+
+    public void CargarFragmento() {
+        Fragment fragmentoGenerico = null;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentoGenerico = new FragmentoMantenimientoUsuario();
+        if (fragmentoGenerico != null) {
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_content, fragmentoGenerico)
+                    .commit();
+        }
+
+
+    }
+
+
 }
