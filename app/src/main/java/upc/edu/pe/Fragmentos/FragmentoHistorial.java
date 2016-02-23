@@ -41,7 +41,7 @@ public class FragmentoHistorial extends Fragment {
         //Extrayendo el extra de tipo cadena
         clienteId = prefs.getString("idCliente", "0");
         //Inicializamos los tipos de la variables
-        btnRegresar = (Button) view.findViewById(R.id.btnRegresar);
+        //btnRegresar = (Button) view.findViewById(R.id.btnRegresar);
         listView = (ListView) view.findViewById(R.id.lista);
 
         new HistorialTask(getActivity(),listView,arrayAdapter).execute(clienteId);

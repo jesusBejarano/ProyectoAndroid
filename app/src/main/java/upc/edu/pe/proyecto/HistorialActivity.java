@@ -38,7 +38,7 @@ public class HistorialActivity extends Activity {
         //Extrayendo el extra de tipo cadena
         clienteId = prefs.getString("idCliente", "0");
         //Inicializamos los tipos de la variables
-        btnRegresar = (Button) findViewById(R.id.btnRegresar);
+       // btnRegresar = (Button) findViewById(R.id.btnRegresar);
         listView = (ListView) findViewById(R.id.lista);
 
         new HistorialTask(HistorialActivity.this,listView,arrayAdapter).execute(clienteId);

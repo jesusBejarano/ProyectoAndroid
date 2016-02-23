@@ -56,13 +56,26 @@ public class MainActivity extends AppCompatActivity {
             editor.commit();
         }
 
-
-
-
         setToolbar(); // Setear Toolbar como action bar
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+
+
+        if (Globals.cliente_login.getId_cliente()==1 || Globals.cliente_login.getId_cliente()==2)
+        {
+            navigationView.getMenu().getItem(3).setVisible(true);
+        }
+        else
+        {
+            navigationView.getMenu().getItem(3).setVisible(false);
+
+        }
+
+
+
+
 
         if (navigationView != null) {
             prepararDrawer(navigationView);
