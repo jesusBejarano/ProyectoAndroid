@@ -89,8 +89,8 @@ public class HistorialTask extends AsyncTask<String,Void,String> {
                 dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent i = new Intent(context, MenuActivity.class);
-                            context.startActivity(i);
+                            //Intent i = new Intent(context, MenuActivity.class);
+                            //context.startActivity(i);
                         }
                     });
                 dialog.show();

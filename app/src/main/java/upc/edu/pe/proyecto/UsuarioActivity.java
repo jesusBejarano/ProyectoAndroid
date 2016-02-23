@@ -231,4 +231,8 @@ public class UsuarioActivity extends Activity {
             }
         }
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

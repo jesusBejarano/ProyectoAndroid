@@ -56,7 +56,8 @@
         </activity>
         <activity android:name=".MantenimientoActivity" >
         </activity>
-        <activity android:name=".UsuarioActivity" >
+        <activity android:name=".UsuarioActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".HistorialActivity" >
         </activity>

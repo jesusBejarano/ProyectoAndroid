@@ -20,9 +20,9 @@
             android:icon="@drawable/ic_truck"
             android:title="@string/ordenes_item" />
         <item
-            android:id="@+id/nav_facturas"
+            android:id="@+id/nav_historial"
             android:icon="@drawable/ic_file_document"
-            android:title="@string/facturas_item" />
+            android:title="@string/historial_item" />
 
         <!-- Sección de configuración -->
         <item

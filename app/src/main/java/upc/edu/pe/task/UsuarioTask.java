@@ -12,6 +12,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
+import upc.edu.pe.proyecto.LoginActivity;
 import upc.edu.pe.proyecto.MainActivity;
 import upc.edu.pe.proyecto.R;
 import upc.edu.pe.utils.HttpClientUtil;
@@ -72,7 +73,7 @@ public class UsuarioTask extends AsyncTask<String,Void,String>
             dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Intent i = new Intent(context, MainActivity.class);
+                    Intent i = new Intent(context, LoginActivity.class);
                     context.startActivity(i);
                 }
             });}

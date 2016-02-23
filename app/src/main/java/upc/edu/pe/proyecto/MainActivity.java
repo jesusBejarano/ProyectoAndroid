@@ -1,6 +1,8 @@
 package upc.edu.pe.proyecto;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import upc.edu.pe.Fragmentos.FragmentoCarrito;
+import upc.edu.pe.Fragmentos.FragmentoHistorial;
 import upc.edu.pe.Fragmentos.FragmentoMantenimientoUsuario;
 import upc.edu.pe.Fragmentos.FragmentoPedidosPendientes;
 import upc.edu.pe.Fragmentos.FragmentoProductos;
@@ -41,6 +44,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+             final SharedPreferences prefs =  getSharedPreferences("MyCliente", Context.MODE_PRIVATE);
+        //Obetener Intent
+        Intent intent = getIntent();
+        //Extrayendo el extra de tipo cadena
+        String clienteId = intent.getStringExtra("cliente");
+        if(clienteId != null && !clienteId.isEmpty()){
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("idCliente",clienteId.trim());
+            editor.commit();
+        }
+
 
 
 
@@ -105,12 +120,17 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_carrito:
                 fragmentoGenerico = new FragmentoCarrito();
                 break;
+            case R.id.nav_historial:
+                fragmentoGenerico = new FragmentoHistorial();
+                break;
             case R.id.nav_log_out:
-                finish();
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+               // finish();
+                //Intent intent = new Intent(Intent.ACTION_MAIN);
+                //intent.addCategory(Intent.CATEGORY_HOME);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                //startActivity(intent);
+                Intent i =new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(i);
 
 
                 break;
@@ -160,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
     //evento del boton back
     @Override
     public void onBackPressed() {
-        // Do Here what ever you want do on back press;
     }
 
     public void CargarFragmento() {
