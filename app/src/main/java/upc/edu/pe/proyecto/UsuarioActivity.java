@@ -92,7 +92,7 @@ public class UsuarioActivity extends Activity {
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarActivity(MainActivity.class);
+                mostrarActivity(LoginActivity.class);
             }
         });
 

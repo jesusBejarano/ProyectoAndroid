@@ -14,6 +14,7 @@ public class Cliente implements Serializable{
     private String nombre;
     private String telefono;
     private String usuario;
+    private String codigoGCM;
 
     private Distrito distrito;
     /*private List<Pedido> listPedidos;*/
@@ -103,5 +104,13 @@ public class Cliente implements Serializable{
 
     public String getNombreApe() {
         return nombre+apellidos;
+    }
+
+    public String getCodigoGCM() {
+        return codigoGCM;
+    }
+
+    public void setCodigoGCM(String codigoGCM) {
+        this.codigoGCM = codigoGCM;
     }
 }

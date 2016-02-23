@@ -10,6 +10,7 @@
     android:scrollbars="vertical">
 
     <LinearLayout
+        android:id="@+id/area_registro"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="?attr/actionBarSize"
@@ -101,6 +102,7 @@
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_below="@+id/area_registro"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="5dp"
         android:gravity="center_vertical"
