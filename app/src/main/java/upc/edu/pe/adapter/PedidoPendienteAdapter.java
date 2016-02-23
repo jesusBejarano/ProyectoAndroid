@@ -1,7 +1,6 @@
 package upc.edu.pe.adapter;
 
 import android.content.Context;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import upc.edu.pe.Fragmentos.FragmentoPedidos;
 import upc.edu.pe.proyecto.R;
 import upc.edu.pe.task.ActualizarPedidoTask;
 import upc.edu.pe.type.Pedido;
@@ -21,7 +19,7 @@ import upc.edu.pe.type.Pedido;
 /**
  * Created by jesus on 21/02/2016.
  */
-public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoViewHolder>   {
+public class PedidoPendienteAdapter extends RecyclerView.Adapter<PedidoPendienteAdapter.PedidoViewHolder>   {
 
 
 
@@ -42,7 +40,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoView
         }
     }
 
-    public PedidoAdapter(List<Pedido> items,Context context) {
+    public PedidoPendienteAdapter(List<Pedido> items, Context context) {
         this.items = items;
         this.context=context;
     }
@@ -55,7 +53,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoView
     @Override
     public PedidoViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.content_pedido, viewGroup, false);
+                .inflate(R.layout.content_pedidopendiente, viewGroup, false);
         return new PedidoViewHolder(v);
     }
 

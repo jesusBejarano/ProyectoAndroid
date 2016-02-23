@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import upc.edu.pe.proyecto.R;
-import upc.edu.pe.task.PedidosTask;
+import upc.edu.pe.task.PedidosPendientesTask;
 
 /**
  * Created by jesus on 21/02/2016.
  */
-public class FragmentoPedidos extends Fragment {
+public class FragmentoPedidosPendientes extends Fragment {
 
     private RecyclerView reciclador;
     private LinearLayoutManager layoutManager;
@@ -28,7 +28,7 @@ public class FragmentoPedidos extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.pedidos_main, container, false);
+        View view = inflater.inflate(R.layout.pedidopendiente_main, container, false);
 
 
 
@@ -42,7 +42,7 @@ public class FragmentoPedidos extends Fragment {
 
 
         // new CatalogoTask(getActivity(),reciclador).execute("");
-        new PedidosTask(getActivity(),reciclador,adaptador).execute();
+        new PedidosPendientesTask(getActivity(),reciclador,adaptador).execute();
 
 
 

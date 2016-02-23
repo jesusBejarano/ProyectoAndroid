@@ -1,5 +1,6 @@
 package upc.edu.pe.proyecto;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,7 +15,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import upc.edu.pe.Fragmentos.FragmentoCarrito;
-import upc.edu.pe.Fragmentos.FragmentoPedidos;
+import upc.edu.pe.Fragmentos.FragmentoPedidosPendientes;
 import upc.edu.pe.Fragmentos.FragmentoProductos;
 import upc.edu.pe.Global.Globals;
 
@@ -79,11 +80,21 @@ public class MainActivity extends AppCompatActivity {
                 fragmentoGenerico = new FragmentoProductos();
                 break;
             case R.id.nav_ordenes:
-                fragmentoGenerico = new FragmentoPedidos();
+                fragmentoGenerico = new FragmentoPedidosPendientes();
                 break;
             case R.id.nav_carrito:
                 fragmentoGenerico = new FragmentoCarrito();
                 break;
+            case R.id.nav_log_out:
+                finish();
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+
+                break;
+
 
         }
         if (fragmentoGenerico != null) {

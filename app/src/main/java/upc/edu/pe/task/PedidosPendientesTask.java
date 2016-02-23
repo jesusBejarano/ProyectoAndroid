@@ -15,8 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import upc.edu.pe.adapter.CatalogoAdapter;
-import upc.edu.pe.adapter.PedidoAdapter;
+import upc.edu.pe.adapter.PedidoPendienteAdapter;
 import upc.edu.pe.proyecto.MenuActivity;
 import upc.edu.pe.type.Pedido;
 import upc.edu.pe.utils.HttpClientUtil;
@@ -24,7 +23,7 @@ import upc.edu.pe.utils.HttpClientUtil;
 /**
  * Created by jesus on 21/02/2016.
  */
-public class PedidosTask extends AsyncTask<String,Void,String> {
+public class PedidosPendientesTask extends AsyncTask<String,Void,String> {
 
     private Context context;
     private ProgressDialog progressDialog;
@@ -37,7 +36,7 @@ public class PedidosTask extends AsyncTask<String,Void,String> {
     private List<Pedido> listPedidos;
 
 
-    public PedidosTask(Context context, RecyclerView listView, RecyclerView.Adapter arrayAdapter) {
+    public PedidosPendientesTask(Context context, RecyclerView listView, RecyclerView.Adapter arrayAdapter) {
 
         this.context = context;
         this.recycler = listView;
@@ -93,7 +92,7 @@ public class PedidosTask extends AsyncTask<String,Void,String> {
             }
             else{
                 //Creamos el adaptador
-                adapter = new PedidoAdapter(listPedidos,context);
+                adapter = new PedidoPendienteAdapter(listPedidos,context);
                 recycler.setAdapter(adapter);
                 progressDialog.dismiss();
             }

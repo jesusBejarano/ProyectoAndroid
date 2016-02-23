@@ -34,7 +34,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" >
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            >
         </activity>
         <activity android:name=".MenuActivity" >
         </activity>
@@ -50,6 +53,8 @@
         </activity>
         <activity android:name=".CatalogoActivity" >
         </activity>
+        <activity android:name=".PedidoPendienteActivity" >
+        </activity>
         <activity
             android:name=".CarritoActivity"
             android:label="@string/title_activity_carrito" >
@@ -62,10 +67,7 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAJUVGad0o361bvmMDPm2vOKM0rq9p6D-k" />
 
-        <activity
-            android:name=".PedidosActivity"
-            android:label="@string/title_activity_pedidos" >
-        </activity>
+
         <activity
             android:name=".PedidoActivity"
             android:label="@string/title_activity_pedido" >
