@@ -1,12 +1,16 @@
 package upc.edu.pe.Fragmentos;
 
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import upc.edu.pe.adapter.CarritoAdapter;
+import upc.edu.pe.proyecto.PedidoActivity;
 import upc.edu.pe.proyecto.R;
 import upc.edu.pe.type.Carrito;
 import upc.edu.pe.utils.CarritoDAO;
@@ -37,7 +42,7 @@ public class FragmentoCarrito extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.carrito_main, container, false);
-
+        setHasOptionsMenu(true);
 
         reciclador = (RecyclerView) view.findViewById(R.id.reciclador_carrito);
         reciclador.setHasFixedSize(true);
@@ -56,6 +61,27 @@ public class FragmentoCarrito extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_carrito, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_comprar:
+               // mostrarActivity(PedidoActivity.class);
+                return true;
+            case R.id.action_eliminar:
+                eliminarCarrrito();
+                showSnackBar("Se eliminó todo su carrito");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private List<Carrito> obtenerCarrito(){
@@ -79,4 +105,10 @@ public class FragmentoCarrito extends Fragment {
             Log.i("Eliminar Carrito", "====> " + daoExcepcion.getMessage());
         }
     }
+
+    private void showSnackBar(String msg) {
+        Snackbar.make(getActivity().findViewById(R.id.coordinator), msg, Snackbar.LENGTH_LONG).show();
+    }
+
+
 }
