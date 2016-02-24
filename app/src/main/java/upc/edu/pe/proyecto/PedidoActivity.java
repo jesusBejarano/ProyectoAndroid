@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import upc.edu.pe.Fragmentos.FragmentoCarrito;
 import upc.edu.pe.task.PedidoTask;
 import upc.edu.pe.type.Carrito;
 import upc.edu.pe.type.Cliente;
@@ -109,7 +110,7 @@ public class PedidoActivity extends AppCompatActivity {
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarActivity(CarritoActivity.class);
+                mostrarActivity(FragmentoCarrito.class);
             }
         });
 
@@ -193,6 +194,8 @@ public class PedidoActivity extends AppCompatActivity {
 
     private void enviarInformacion(){
 
+        String precio = txtTotal.getText().toString().replace("S/.", "");
+
         try {
             pedido = new Pedido();
 
@@ -204,7 +207,7 @@ public class PedidoActivity extends AppCompatActivity {
             pedido.setCantidad(detallePedido.size());
             pedido.setDireccion(txtDireccion.getText().toString());
             pedido.setEstado("P");
-            pedido.setMonto(Double.parseDouble(txtTotal.getText().toString()));
+            pedido.setMonto(Double.parseDouble(precio.trim()));
 
             pedido.setListDetallePedidos(detallePedido);
 

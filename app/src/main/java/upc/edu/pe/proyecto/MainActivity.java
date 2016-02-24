@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     NavigationView navigationView;
 
+    final SharedPreferences prefs =  getSharedPreferences("MyCliente", Context.MODE_PRIVATE);
+
     /**
      * Titulo inicial del drawer
      */
@@ -45,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-             final SharedPreferences prefs =  getSharedPreferences("MyCliente", Context.MODE_PRIVATE);
         //Obetener Intent
         Intent intent = getIntent();
         //Extrayendo el extra de tipo cadena
@@ -142,13 +143,12 @@ public class MainActivity extends AppCompatActivity {
                 //intent.addCategory(Intent.CATEGORY_HOME);
                 //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 //startActivity(intent);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.clear();
+                editor.commit();
                 Intent i =new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(i);
-
-
                 break;
-
-
         }
         if (fragmentoGenerico != null) {
             fragmentManager

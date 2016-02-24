@@ -1,6 +1,7 @@
 package upc.edu.pe.Fragmentos;
 
 
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -73,7 +74,7 @@ public class FragmentoCarrito extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_comprar:
-               // mostrarActivity(PedidoActivity.class);
+               mostrarActivity(PedidoActivity.class);
                 return true;
             case R.id.action_eliminar:
                 eliminarCarrrito();
@@ -110,5 +111,11 @@ public class FragmentoCarrito extends Fragment {
         Snackbar.make(getActivity().findViewById(R.id.coordinator), msg, Snackbar.LENGTH_LONG).show();
     }
 
+    private void mostrarActivity(Class view){
+        Intent i = new Intent(getActivity(), view);
+        i.putExtra("Direccion", "");
+        getActivity().startActivity(i);
+
+    }
 
 }

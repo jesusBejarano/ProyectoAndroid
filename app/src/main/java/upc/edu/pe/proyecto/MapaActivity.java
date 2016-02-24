@@ -9,6 +9,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
@@ -35,7 +36,7 @@ import java.util.Locale;
 
 import upc.edu.pe.service.Localizador;
 
-public class MapaActivity extends FragmentActivity implements GoogleMap.OnMarkerDragListener {
+public class MapaActivity extends FragmentActivity implements GoogleMap.OnMarkerDragListener,GoogleMap.OnMarkerClickListener {
 
     //Variables
     EditText txtDireccionMapa;
@@ -68,6 +69,7 @@ public class MapaActivity extends FragmentActivity implements GoogleMap.OnMarker
         googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapa_inicial)).getMap();
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.setOnMarkerDragListener(this);
+        googleMap.setOnMarkerClickListener(this);
 
         obj = new Localizador(this);
         obtenerLocalizacionActual();
@@ -157,9 +159,13 @@ public class MapaActivity extends FragmentActivity implements GoogleMap.OnMarker
         }
     }
 
+
+
     @Override
     public void onMarkerDrag(Marker marker) {
-        Toast.makeText(this,"Seleccione una nueva dirección", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this,"Seleccione una nueva dirección", Toast.LENGTH_SHORT).show();
+      //  Snackbar snackbar = Snackbar.make(findViewById(R.id.txtDireccionMapa), "Seleccione una nueva dirección", Snackbar.LENGTH_SHORT);
+      //  snackbar.show();
     }
 
     @Override
@@ -171,5 +177,11 @@ public class MapaActivity extends FragmentActivity implements GoogleMap.OnMarker
 
     @Override
     public void onMarkerDragStart(Marker marker) {
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        Toast.makeText(this,"Seleccione una nueva dirección", Toast.LENGTH_SHORT).show();
+        return false;
     }
 }

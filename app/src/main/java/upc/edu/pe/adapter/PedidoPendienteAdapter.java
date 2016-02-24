@@ -70,6 +70,8 @@ public class PedidoPendienteAdapter extends RecyclerView.Adapter<PedidoPendiente
                 Toast.makeText(v.getContext(), "El pedido  : " + items.get(posicion).getId_pedido(), Toast.LENGTH_SHORT).show();
                 try {
                     new ActualizarPedidoTask(context, items.get(posicion)).execute();
+                    items.remove(posicion);
+                    notifyDataSetChanged();
                     //new CatalogoTask(getActivity(),reciclador,adaptador).execute();
 
 

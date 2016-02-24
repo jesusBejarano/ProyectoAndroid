@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import upc.edu.pe.Fragmentos.FragmentoProductos;
 import upc.edu.pe.proyecto.CarritoActivity;
 import upc.edu.pe.proyecto.MainActivity;
 import upc.edu.pe.proyecto.MenuActivity;
@@ -72,10 +73,10 @@ public class PedidoTask extends AsyncTask<String,Void,String> {
                 public void onClick(DialogInterface dialog, int which) {
                     if(mensaje.equalsIgnoreCase("Pedido Registrado")) {
                         eliminarCarrrito();
-                        Intent i = new Intent(context, MenuActivity.class);
+                        Intent i = new Intent(context, MainActivity.class);
                         context.startActivity(i);
                     }else{
-                        Intent i = new Intent(context, CarritoActivity.class);
+                        Intent i = new Intent(context, MainActivity.class);
                         context.startActivity(i);
                     }
                 }

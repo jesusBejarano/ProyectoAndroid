@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import upc.edu.pe.Fragmentos.FragmentoHistorial;
 import upc.edu.pe.proyecto.DetalleActivity;
 import upc.edu.pe.proyecto.R;
 import upc.edu.pe.type.Pedido;
@@ -21,12 +22,16 @@ import upc.edu.pe.type.Pedido;
  * Created by Miguel Cardoso on 09/10/2015.
  */
 public class HistorialAdapter extends ArrayAdapter<Pedido> {
+
+    private Context context;
+
     public HistorialAdapter(Context context, List<Pedido> objects) {
         super(context, 0, objects);
+        this.context = context;
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent){
+    public View getView(final int position, final View convertView, ViewGroup parent){
 
         //Obteniendo una instancia del inflater
         LayoutInflater inflater = (LayoutInflater)getContext()
@@ -57,7 +62,7 @@ public class HistorialAdapter extends ArrayAdapter<Pedido> {
             @Override
             public void onClick(View v) {
                 Log.d("Parametro : ",item.getId_pedido()+"");
-                Intent intent = new Intent(getContext(), DetalleActivity.class);
+                Intent intent = new Intent(context, DetalleActivity.class);
                 intent.putExtra("pedidoId",item.getId_pedido());
                 getContext().startActivity(intent);
             }

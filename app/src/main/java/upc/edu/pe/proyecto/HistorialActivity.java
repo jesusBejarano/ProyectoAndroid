@@ -24,7 +24,7 @@ public class HistorialActivity extends Activity {
     //Variables
     private ListView listView;
     private ArrayAdapter arrayAdapter;
-    private Button btnRegresar;
+   // private Button btnRegresar;
     //Otros
     public String clienteId;
 
@@ -43,12 +43,12 @@ public class HistorialActivity extends Activity {
 
         new HistorialTask(HistorialActivity.this,listView,arrayAdapter).execute(clienteId);
 
-        btnRegresar.setOnClickListener(new View.OnClickListener() {
+      /*  btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mostrarActivity(MenuActivity.class);
             }
-        });
+        });*/
 
     }
 
