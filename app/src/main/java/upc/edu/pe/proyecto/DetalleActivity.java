@@ -25,6 +25,7 @@ public class DetalleActivity extends Activity {
     private TextView total;
     //Otros
     public String pedidoId;
+    private Button btnRegresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +36,19 @@ public class DetalleActivity extends Activity {
         //Extrayendo el extra de tipo cadena
         pedidoId = intent.getStringExtra("pedidoId");
         Log.d("PEDIDO : ", pedidoId);
-
+        btnRegresar = (Button) findViewById(R.id.btnRegresarHis);
         layout = (TableLayout) findViewById(R.id.contenedor);
 
         total = (TextView) findViewById(R.id.txtTotal);
         new DetalleTask(DetalleActivity.this,layout,total).execute(pedidoId);
+
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DetalleActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void mostrarActivity(Class view){

@@ -34,13 +34,22 @@
 
         <Button
             style="?android:attr/buttonStyleSmall"
+            android:layout_height="29dp"
+            android:id="@+id/btnVerPedido"
+            android:text="Ver"
+            android:layout_width="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/precio" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Atdr."
             android:id="@+id/btnAtenderPedido"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/precio"/>
+            android:layout_toStartOf="@+id/btnVerPedido"
+            android:layout_alignTop="@+id/btnVerPedido"
+            android:layout_alignBottom="@+id/btnVerPedido"/>
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

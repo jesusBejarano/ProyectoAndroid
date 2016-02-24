@@ -15,6 +15,7 @@ import java.util.List;
 
 import upc.edu.pe.Fragmentos.FragmentoHistorial;
 import upc.edu.pe.proyecto.DetalleActivity;
+import upc.edu.pe.proyecto.MainActivity;
 import upc.edu.pe.proyecto.R;
 import upc.edu.pe.type.Pedido;
 

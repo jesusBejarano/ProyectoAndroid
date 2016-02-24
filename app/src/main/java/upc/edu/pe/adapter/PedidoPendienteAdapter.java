@@ -1,6 +1,7 @@
 package upc.edu.pe.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import upc.edu.pe.proyecto.DetalleActivity;
 import upc.edu.pe.proyecto.R;
 import upc.edu.pe.task.ActualizarPedidoTask;
 import upc.edu.pe.type.Pedido;
@@ -32,11 +34,16 @@ public class PedidoPendienteAdapter extends RecyclerView.Adapter<PedidoPendiente
         public TextView precio;
         public Button btnatenderpedido;
 
+
+        private Button btnVer;
+
         public PedidoViewHolder(View v) {
             super(v);
             nombre = (TextView) v.findViewById(R.id.nombre);
             precio = (TextView) v.findViewById(R.id.precio);
             btnatenderpedido=(Button) v.findViewById(R.id.btnAtenderPedido);
+
+            btnVer=(Button) v.findViewById(R.id.btnVerPedido);
         }
     }
 
@@ -75,7 +82,6 @@ public class PedidoPendienteAdapter extends RecyclerView.Adapter<PedidoPendiente
                     //new CatalogoTask(getActivity(),reciclador,adaptador).execute();
 
 
-
                 } catch (Exception e) {
                     Log.i("Error MOdificar Pedido", "====> " + e.getMessage());
                 }
@@ -83,6 +89,19 @@ public class PedidoPendienteAdapter extends RecyclerView.Adapter<PedidoPendiente
 
             }
         });
+
+
+        viewHolder.btnVer.setClickable(true);
+        viewHolder.btnVer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Parametro : ",items.get(posicion).getId_pedido()+"");
+                Intent intent = new Intent(context, DetalleActivity.class);
+                intent.putExtra("pedidoId",items.get(posicion).getId_pedido()+"");
+                context.startActivity(intent);
+            }
+        });
+
 
 
 
